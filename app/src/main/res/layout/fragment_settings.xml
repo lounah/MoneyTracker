@@ -98,7 +98,5 @@
         android:background="@color/white"
         android:layout_below="@id/tv_about"
         style="@style/TextStyle"/>
-
-
 </RelativeLayout>
 </ScrollView>
