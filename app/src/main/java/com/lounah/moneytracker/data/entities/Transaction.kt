@@ -10,4 +10,5 @@ data class Transaction(
         var date : Date,
         val type : TransactionType,
         val amount : Double,
-        val currency : Currency)
+        val currency : Currency,
+        val exchangeRate : List<Map<Currency, Double>>)

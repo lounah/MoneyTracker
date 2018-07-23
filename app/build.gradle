@@ -89,6 +89,7 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:$archPersistenceVersion"
     kapt "android.arch.persistence.room:compiler:1.1.1"
     implementation "android.arch.persistence.room:rxjava2:$archPersistenceVersion"
+    testImplementation 'android.arch.core:core-testing:1.1.1'
 
     // RxJava2
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
