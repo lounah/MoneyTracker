@@ -7,13 +7,11 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
-import android.view.Menu
 import android.view.MenuItem
-import com.lounah.moneytracker.R
 import com.lounah.moneytracker.ui.common.BaseFragment
 import com.lounah.moneytracker.ui.settings.SettingsFragment
 import com.lounah.moneytracker.ui.wallet.WalletFragment
+import com.lounah.wallettracker.R
 import com.ncapdevi.fragnav.FragNavController
 import com.ncapdevi.fragnav.FragNavTransactionOptions
 import dagger.android.support.DaggerAppCompatActivity
@@ -31,7 +29,6 @@ class MainActivity : DaggerAppCompatActivity(),
 
     companion object {
         private const val BALANCE_FRAGMENT_ID = 0
-        private const val SETTINGS_FRAGMENT_ID = 1
         private const val FRAGMENT_CONTAINER_ID = R.id.container_main
     }
 

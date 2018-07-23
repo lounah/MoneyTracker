@@ -8,13 +8,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.lounah.moneytracker.R
 import com.lounah.moneytracker.data.entities.Balance
 import com.lounah.moneytracker.data.entities.Status
 import com.lounah.moneytracker.data.entities.Transaction
 import com.lounah.moneytracker.ui.MainActivity
 import com.lounah.moneytracker.ui.common.BaseFragment
 import com.lounah.moneytracker.util.ZoomOutPageTransformer
+import com.lounah.wallettracker.R
 import kotlinx.android.synthetic.main.fragment_wallet.*
 import javax.inject.Inject
 

@@ -6,8 +6,8 @@ import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.lounah.moneytracker.R
 import com.lounah.moneytracker.data.entities.Balance
+import com.lounah.wallettracker.R
 import kotlinx.android.synthetic.main.item_balance.view.*
 
 class BalanceVPAdapter : PagerAdapter() {

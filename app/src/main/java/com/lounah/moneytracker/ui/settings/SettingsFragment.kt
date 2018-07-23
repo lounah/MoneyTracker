@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.lounah.moneytracker.R
 import com.lounah.moneytracker.ui.MainActivity
 import com.lounah.moneytracker.ui.common.BaseFragment
+import com.lounah.wallettracker.R
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 

@@ -5,7 +5,7 @@ import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.lounah.moneytracker.R
+import com.lounah.wallettracker.R
 
 
 class AddTransactionDialogFragment : DialogFragment() {

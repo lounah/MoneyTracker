@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.lounah.moneytracker.R
 import com.lounah.moneytracker.data.entities.Transaction
+import com.lounah.wallettracker.R
 
 
 class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHolder>() {
