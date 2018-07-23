@@ -7,6 +7,7 @@ import android.arch.lifecycle.ViewModel
 import com.lounah.moneytracker.data.entities.Balance
 import com.lounah.moneytracker.data.entities.Resource
 import com.lounah.moneytracker.data.entities.Transaction
+import com.lounah.moneytracker.data.repositories.WalletRepository
 import com.lounah.moneytracker.util.AbsentLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
