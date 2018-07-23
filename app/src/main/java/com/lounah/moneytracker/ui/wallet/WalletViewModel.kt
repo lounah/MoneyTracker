@@ -52,7 +52,7 @@ class WalletViewModel @Inject constructor(private val repository : WalletReposit
 
     override fun onCleared() {
         super.onCleared()
-        if (!transactionAddingDisposable.isDisposed)
+        if (::transactionAddingDisposable.isInitialized && !transactionAddingDisposable.isDisposed)
             transactionAddingDisposable.dispose()
     }
 
