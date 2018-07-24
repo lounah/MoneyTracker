@@ -41,7 +41,7 @@ class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHol
             itemView.findViewById<TextView>(R.id.tv_currency)
         }
 
-        fun bind(item : Transaction) = with(itemView) {
+        fun bind(item: Transaction) = with(itemView) {
             date.text = DateFormat.format("MM/dd/yyyy hh:mm", item.date)
             actionType.text = item.type.toString()
             amount.text = item.amount.toString()
@@ -49,17 +49,17 @@ class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHol
         }
     }
 
-    fun addTransaction(transaction : Transaction) {
+    fun addTransaction(transaction: Transaction) {
         transactions.add(transaction)
         notifyDataSetChanged()
     }
 
-    fun addTransactions(transactions : MutableList<Transaction>) {
+    fun addTransactions(transactions: MutableList<Transaction>) {
         transactions.addAll(transactions)
         notifyDataSetChanged()
     }
 
-    fun updateDataSet(transactions : List<Transaction>?) {
+    fun updateDataSet(transactions: List<Transaction>?) {
         if (transactions != null) {
             this.transactions.clear()
             this.transactions.addAll(transactions)

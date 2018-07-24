@@ -15,19 +15,19 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
-class WalletViewModel @Inject constructor(private val repository : WalletRepository) : ViewModel() {
+class WalletViewModel @Inject constructor(private val repository: WalletRepository) : ViewModel() {
 
     private val refreshState = MutableLiveData<Boolean>()
     val addingTransactionResult = MutableLiveData<Boolean>()
 
-    private lateinit var transactionAddingDisposable : Disposable
+    private lateinit var transactionAddingDisposable: Disposable
 
-    val currentBalance : LiveData<Resource<List<Balance>>> =
+    val currentBalance: LiveData<Resource<List<Balance>>> =
             Transformations.switchMap(refreshState) { shouldRefresh ->
                 if (shouldRefresh) updateCurrentBalance() else AbsentLiveData.create()
             }
 
-    val transactions : LiveData<List<Transaction>> =
+    val transactions: LiveData<List<Transaction>> =
             Transformations.switchMap(refreshState) { value ->
                 if (value) fetchTransactions() else AbsentLiveData.create()
             }
@@ -43,8 +43,8 @@ class WalletViewModel @Inject constructor(private val repository : WalletReposit
         transactionAddingDisposable = repository.addTransaction(transaction)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({addingTransactionResult.postValue(true)}, {
-                    _ -> addingTransactionResult.postValue(false)
+                .subscribe({ addingTransactionResult.postValue(true) }, { _ ->
+                    addingTransactionResult.postValue(false)
                 })
     }
 

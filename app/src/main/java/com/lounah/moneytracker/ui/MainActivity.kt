@@ -21,9 +21,9 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 class MainActivity : DaggerAppCompatActivity(),
         NavigationView.OnNavigationItemSelectedListener,
         BaseFragment.Navigation,
-        FragNavController.RootFragmentListener  {
+        FragNavController.RootFragmentListener {
 
-    private lateinit var toggle : ActionBarDrawerToggle
+    private lateinit var toggle: ActionBarDrawerToggle
 
     private lateinit var fragNavController: FragNavController
 
@@ -74,7 +74,7 @@ class MainActivity : DaggerAppCompatActivity(),
                     }
 
                 })
-                .rootFragments(listOf( WalletFragment()))
+                .rootFragments(listOf(WalletFragment()))
                 .rootFragmentListener(this, 1)
                 .selectedTabIndex(BALANCE_FRAGMENT_ID)
                 .build()
@@ -105,7 +105,7 @@ class MainActivity : DaggerAppCompatActivity(),
         return true
     }
 
-    fun onUpdateToolbarTitle(resId : Int) {
+    fun onUpdateToolbarTitle(resId: Int) {
         toolbar.title = getString(resId)
         toolbar.setNavigationOnClickListener { onBackPressed() }
         if (fragNavController.isRootFragment) {
@@ -127,7 +127,8 @@ class MainActivity : DaggerAppCompatActivity(),
     override fun pushFragment(fragment: Fragment, animationsAllowed: Boolean) {
         if (animationsAllowed) {
             fragNavController.pushFragment(fragment, FragNavTransactionOptions.newBuilder()
-                    .customAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                    .customAnimations(R.anim.fade_in,
+                            R.anim.fade_out)
                     .build())
         } else {
             fragNavController.pushFragment(fragment, FragNavTransactionOptions.newBuilder()

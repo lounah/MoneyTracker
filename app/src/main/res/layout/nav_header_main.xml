@@ -3,18 +3,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:gravity="bottom"
     android:orientation="vertical"
-    android:gravity="bottom">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <TextView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/tv_username"
+        style="@style/TextStyle.Large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        style="@style/TextStyle.Large"
-        android:text="Максим Вишня"/>
+        android:text="Максим Вишня" />
 
 </LinearLayout>
 

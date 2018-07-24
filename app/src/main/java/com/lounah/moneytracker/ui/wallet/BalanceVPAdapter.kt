@@ -39,7 +39,7 @@ class BalanceVPAdapter : PagerAdapter() {
         container.removeAllViews()
     }
 
-    fun updateDataSet(amount : List<Balance>?) {
+    fun updateDataSet(amount: List<Balance>?) {
         if (amount != null) {
             this.amount.clear()
             this.amount.addAll(amount)

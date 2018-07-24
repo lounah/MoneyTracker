@@ -9,5 +9,5 @@ import com.lounah.moneytracker.data.entities.Balance
 @Dao
 interface BalanceDao : BaseDao<Balance> {
     @Query("SELECT * FROM balance")
-    fun getBalance() : LiveData<List<Balance>>
+    fun getBalance(): LiveData<List<Balance>>
 }

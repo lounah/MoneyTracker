@@ -4,6 +4,6 @@ import io.reactivex.Single
 
 interface CurrencyApi {
 
-    fun getExchangeRate(from : String, to : String) : Single<Double>
+    fun getExchangeRate(from: String, to: String): Single<Double>
 
 }

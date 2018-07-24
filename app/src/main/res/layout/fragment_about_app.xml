@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageView
         android:id="@+id/iv_app_icon"
         android:layout_width="190dp"
@@ -16,21 +17,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_app_icon"
-        android:textColor="@color/greyDark"
         android:layout_margin="24dp"
+        android:text="@string/app_name"
         android:textAlignment="center"
-        android:textSize="26sp"
-        android:text="@string/app_name" />
+        android:textColor="@color/greyDark"
+        android:textSize="26sp" />
 
     <TextView
         android:id="@+id/tv_app_version"
+        style="@style/TextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_app_title"
-        android:textColor="@color/greyDark"
         android:layout_margin="24dp"
         android:textAlignment="center"
-        style="@style/TextStyle"/>
+        android:textColor="@color/greyDark" />
 
     <TextView
         android:id="@+id/tv_copyright"
@@ -38,8 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
         android:layout_margin="16dp"
+        android:layout_marginBottom="0dp"
         android:textAlignment="center"
         android:textColor="@color/greyDark" />
 </RelativeLayout>

@@ -16,6 +16,6 @@ import com.lounah.moneytracker.data.entities.Transaction
         ExchangeRateTypeConverter::class)
 @Database(entities = [Balance::class, Transaction::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-    abstract val transactionsDao : TransactionsDao
-    abstract val balanceDao : BalanceDao
+    abstract val transactionsDao: TransactionsDao
+    abstract val balanceDao: BalanceDao
 }

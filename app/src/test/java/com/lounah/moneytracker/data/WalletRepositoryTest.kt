@@ -57,4 +57,11 @@ class WalletRepositoryTest {
         assertTrue(repository.getTransactionsSum(Currency.RUR) == 300.0)
     }
 
+
+    // Mockito annot.
+    // inj mocks
+    // spy
+
+
+
 }

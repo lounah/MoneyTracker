@@ -8,5 +8,5 @@ import com.lounah.moneytracker.data.entities.Transaction
 @Dao
 interface TransactionsDao : BaseDao<Transaction> {
     @Query("SELECT * FROM transactions")
-    fun getTransactions() : LiveData<List<Transaction>>
+    fun getTransactions(): LiveData<List<Transaction>>
 }

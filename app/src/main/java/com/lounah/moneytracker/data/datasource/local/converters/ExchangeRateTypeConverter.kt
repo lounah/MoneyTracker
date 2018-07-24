@@ -8,7 +8,6 @@ import java.util.*
 import java.util.Collections.emptyList
 
 
-
 class ExchangeRateTypeConverter {
 
     val gson = Gson()

@@ -3,8 +3,10 @@ package com.lounah.moneytracker.ui.wallet
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,17 +26,16 @@ class WalletFragment : BaseFragment() {
     override val TAG: String
         get() = "WALLET_FRAGMENT"
 
-    private lateinit var pagerAdapter : BalanceVPAdapter
+    private lateinit var pagerAdapter: BalanceVPAdapter
     private lateinit var transactionsAdapter: TransactionsRVAdapter
 
     @Inject
     lateinit var viewModel: WalletViewModel
 
     @Inject
-    lateinit var factory : ViewModelProvider.Factory
+    lateinit var factory: ViewModelProvider.Factory
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
-        = inflater.inflate(R.layout.fragment_wallet, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) = inflater.inflate(R.layout.fragment_wallet, container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,11 +63,21 @@ class WalletFragment : BaseFragment() {
         rv_actions.layoutManager = linearLayoutManager
 
         fab_add.setOnClickListener { addTransaction() }
+
+        rv_actions.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                if (dy > 0 && fab_add.visibility == View.VISIBLE) {
+                    fab_add.hide()
+                } else if (dy < 0 && fab_add.visibility != View.VISIBLE) {
+                    fab_add.show()
+                }
+            }
+        })
     }
 
     private fun initViewModel() {
         viewModel.currentBalance.observe(this, Observer { response ->
-            when(response?.status) {
+            when (response?.status) {
                 Status.SUCCESS -> processSuccessBalanceResponse(response.data!!)
             }
         })
@@ -88,12 +99,12 @@ class WalletFragment : BaseFragment() {
         (activity as MainActivity).onUpdateToolbarTitle(resId)
     }
 
-    private fun processSuccessBalanceResponse(data : List<Balance>) {
+    private fun processSuccessBalanceResponse(data: List<Balance>) {
         pagerAdapter.updateDataSet(data)
     }
 
-    private fun processSuccessTransactionsResponse(data : List<Transaction>) {
+    private fun processSuccessTransactionsResponse(data: List<Transaction>) {
         transactionsAdapter.updateDataSet(data)
     }
-
+// RemoveAllObservers
 }

@@ -21,6 +21,6 @@ class AppModule {
     }
 
     @Provides
-    fun provideRepository(api : CurrencyApi, balanceDao : BalanceDao, transactionsDao: TransactionsDao)
+    fun provideRepository(api: CurrencyApi, balanceDao: BalanceDao, transactionsDao: TransactionsDao)
             = WalletRepository(api, balanceDao, transactionsDao)
 }
