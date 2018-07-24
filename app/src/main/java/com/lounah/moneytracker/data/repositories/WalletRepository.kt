@@ -36,7 +36,7 @@ open class WalletRepository @Inject constructor(private val api: CurrencyApi,
 
     fun addTransaction(transaction: Transaction) = Completable.fromAction { transactionsDao.insert(transaction) }
 
-    // Лютая хрень, но пока что ничего лучше придумать не смог
+    // Лютая хрень,но пока что ничего лучше придумать не смог
     fun getTransactionsSum(forCurrency: Currency): Double {
         var sum = 0.0
         transactionsDao.getTransactions().value?.forEach { transaction ->

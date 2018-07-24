@@ -66,11 +66,8 @@ class WalletFragment : BaseFragment() {
 
         rv_actions.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-                if (dy > 0 && fab_add.visibility == View.VISIBLE) {
-                    fab_add.hide()
-                } else if (dy < 0 && fab_add.visibility != View.VISIBLE) {
-                    fab_add.show()
-                }
+                if (dy > 0 && fab_add.visibility == View.VISIBLE) fab_add.hide()
+                else if (dy < 0 && fab_add.visibility != View.VISIBLE) fab_add.show()
             }
         })
     }
@@ -106,5 +103,4 @@ class WalletFragment : BaseFragment() {
     private fun processSuccessTransactionsResponse(data: List<Transaction>) {
         transactionsAdapter.updateDataSet(data)
     }
-// RemoveAllObservers
 }

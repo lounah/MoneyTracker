@@ -10,23 +10,21 @@ import java.util.Collections.emptyList
 
 class ExchangeRateTypeConverter {
 
-    val gson = Gson()
+    private val gson = Gson()
 
     @TypeConverter
-    fun stringToSomeObjectList(data: String?): List<Map<Currency, Double>> {
+    fun gsonToExchangeRateList(data: String?): List<Map<Currency, Double>> {
         if (data == null) {
             return Collections.emptyList()
         }
 
-        val listType = object : TypeToken<List<Map<Currency, Double>>>() {
-
-        }.type
+        val listType = object : TypeToken<List<Map<Currency, Double>>>() {}.type
 
         return gson.fromJson(data, listType)
     }
 
     @TypeConverter
-    fun someObjectListToString(someObjects: List<Map<Currency, Double>>): String {
+    fun exchangeRateListToGson(someObjects: List<Map<Currency, Double>>): String {
         return gson.toJson(someObjects)
     }
 }

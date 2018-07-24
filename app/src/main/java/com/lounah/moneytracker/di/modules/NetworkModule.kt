@@ -23,6 +23,4 @@ class NetworkModule {
                 .build()
                 .create(CurrencyApi::class.java)
     }
-
-
 }

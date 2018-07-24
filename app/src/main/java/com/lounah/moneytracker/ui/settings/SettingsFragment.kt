@@ -15,8 +15,6 @@ class SettingsFragment : BaseFragment() {
     override val TAG: String
         get() = "SETTINGS_FRAGMENT"
 
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
             = inflater.inflate(R.layout.fragment_settings, container, false)
 
@@ -27,7 +25,6 @@ class SettingsFragment : BaseFragment() {
             mFragmentNavigator.pushFragment(AboutFragment(), true)
         }
     }
-
 
     override fun setUpToolbarTitle(resId: Int) {
         (activity as MainActivity).onUpdateToolbarTitle(resId)

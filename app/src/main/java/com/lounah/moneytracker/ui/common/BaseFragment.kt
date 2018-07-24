@@ -17,10 +17,6 @@ abstract class BaseFragment : DaggerFragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     abstract fun setUpToolbarTitle(resId : Int)
     abstract val TAG : String
 

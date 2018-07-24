@@ -59,6 +59,7 @@ class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHol
         notifyDataSetChanged()
     }
 
+    // TODO: USE DIFF UTIL
     fun updateDataSet(transactions: List<Transaction>?) {
         if (transactions != null) {
             this.transactions.clear()

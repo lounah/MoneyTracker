@@ -130,10 +130,8 @@ class MainActivity : DaggerAppCompatActivity(),
                     .customAnimations(R.anim.fade_in,
                             R.anim.fade_out)
                     .build())
-        } else {
-            fragNavController.pushFragment(fragment, FragNavTransactionOptions.newBuilder()
-                    .build())
-        }
+        } else fragNavController.pushFragment(fragment, FragNavTransactionOptions.newBuilder()
+                .build())
     }
 
     override fun getRootFragment(i: Int): Fragment? {

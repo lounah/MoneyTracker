@@ -4,7 +4,6 @@ import android.arch.persistence.room.TypeConverter
 import java.util.*
 
 class TimeStampConverter {
-
     @TypeConverter
     fun fromDate(date: Date) = date.time
 

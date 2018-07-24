@@ -10,7 +10,8 @@ import com.lounah.moneytracker.data.datasource.local.converters.TransactionTypeC
 import com.lounah.moneytracker.data.entities.Balance
 import com.lounah.moneytracker.data.entities.Transaction
 
-@TypeConverters(TimeStampConverter::class,
+@TypeConverters(
+        TimeStampConverter::class,
         CurrencyTypeConverter::class,
         TransactionTypeConverter::class,
         ExchangeRateTypeConverter::class)

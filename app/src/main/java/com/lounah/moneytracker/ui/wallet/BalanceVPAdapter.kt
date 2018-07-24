@@ -28,7 +28,8 @@ class BalanceVPAdapter : PagerAdapter() {
 
         itemView.tv_currency.text = amount[position].currency.toString()
         itemView.tv_balance.text = amount[position].amount.toString()
-        itemView.tv_last_update_time.text = DateFormat.format("MM/dd/yyyy hh:mm", amount[position].lastUpdate)
+        itemView.tv_last_update_time.text = DateFormat.format("MM/dd/yyyy hh:mm",
+                amount[position].lastUpdate)
 
         container.addView(itemView)
 
@@ -39,6 +40,7 @@ class BalanceVPAdapter : PagerAdapter() {
         container.removeAllViews()
     }
 
+    // TODO: USE DIFF UTIL
     fun updateDataSet(amount: List<Balance>?) {
         if (amount != null) {
             this.amount.clear()

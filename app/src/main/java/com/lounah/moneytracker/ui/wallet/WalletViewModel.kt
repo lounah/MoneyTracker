@@ -54,6 +54,8 @@ class WalletViewModel @Inject constructor(private val repository: WalletReposito
         super.onCleared()
         if (::transactionAddingDisposable.isInitialized && !transactionAddingDisposable.isDisposed)
             transactionAddingDisposable.dispose()
+        if (!transactionAddingDisposable.isDisposed)
+            transactionAddingDisposable.dispose()
     }
 
 }
