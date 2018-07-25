@@ -10,7 +10,7 @@ class CurrencyTypeConverter {
             when (type) {
                 Currency.EUR -> 0
                 Currency.USD -> 1
-                Currency.RUR -> 2
+                Currency.RUB -> 2
             }
 
     @TypeConverter
@@ -18,7 +18,7 @@ class CurrencyTypeConverter {
             when (type) {
                 0 -> Currency.EUR
                 1 -> Currency.USD
-                2 -> Currency.RUR
-                else -> Currency.RUR
+                2 -> Currency.RUB
+                else -> Currency.RUB
             }
 }
