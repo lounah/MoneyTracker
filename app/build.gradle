@@ -19,14 +19,13 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            multiDexEnabled true
+            multiDexEnabled false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
-            minifyEnabled false
-            multiDexEnabled true
+            multiDexEnabled false
             useProguard false
         }
     }
@@ -103,6 +102,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
     implementation 'com.ncapdevi:frag-nav:2.4.0'
+    implementation 'org.fabiomsr:moneytextview:1.1.0'
 
     // Tests
     testImplementation "junit:junit:$jUnitVersion"
