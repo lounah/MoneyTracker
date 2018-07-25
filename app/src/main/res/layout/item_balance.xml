@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingEnd="12dp"
@@ -14,58 +16,69 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="3dp">
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_balance_title"
-                style="@style/TextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/app_margin"
-                android:layout_marginStart="@dimen/app_margin"
-                android:layout_marginTop="@dimen/app_margin"
-                android:text="@string/balance" />
 
             <TextView
+                android:id="@+id/tv_savings_title_1"
+                style="@style/TextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/current_balance"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <org.fabiomsr.moneytextview.MoneyTextView
                 android:id="@+id/tv_balance"
                 style="@style/TextStyle.Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_balance_title"
-                android:layout_marginEnd="4dp"
-                android:layout_marginStart="@dimen/app_margin"
-                android:layout_marginTop="4dp" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:amount="11143.55"
+                app:baseTextSize="54sp"
+                app:decimalDigitsTextSize="30sp"
+                app:decimalGravity="bottom"
+                app:decimalMargin="8dp"
+                app:includeDecimalSeparator="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_savings_title_1"
+                app:symbolGravity="bottom"
+                app:symbolMargin="8dp"
+                app:symbolTextColor="@color/grey"
+                app:symbolTextSize="30sp" />
 
             <TextView
-                android:id="@+id/tv_currency"
-                style="@style/TextStyle.Small"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/tv_balance"
-                android:layout_below="@id/tv_balance_title"
-                android:layout_toEndOf="@id/tv_balance" />
-
-            <TextView
-                android:id="@+id/last_update_time_text"
+                android:id="@+id/tv_last_update"
+                style="@style/TextStyle"
+                android:textColor="@color/grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_balance"
-                android:layout_marginBottom="@dimen/app_margin"
-                android:layout_marginEnd="4dp"
-                android:layout_marginStart="@dimen/app_margin"
-                android:layout_marginTop="@dimen/app_margin"
-                android:text="@string/last_update_time" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/last_update_time"
+                android:paddingBottom="@dimen/app_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_balance" />
 
             <TextView
                 android:id="@+id/tv_last_update_time"
+                style="@style/TextStyle"
+                android:textColor="@color/grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_balance"
-                android:layout_marginEnd="@dimen/app_margin"
-                android:layout_marginTop="@dimen/app_margin"
-                android:layout_toEndOf="@id/last_update_time_text" />
-        </RelativeLayout>
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="24dp"
+                android:text="сегодня в 12:42"
+                android:paddingBottom="@dimen/app_margin"
+                android:layout_marginBottom="@dimen/app_margin"
+                app:layout_constraintStart_toEndOf="@+id/tv_last_update"
+                app:layout_constraintTop_toBottomOf="@+id/tv_balance" />
+        </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 </FrameLayout>

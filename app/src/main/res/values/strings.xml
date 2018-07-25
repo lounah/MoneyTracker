@@ -6,8 +6,11 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <style name="tbd">TBD</style>
 
     <string name="balance">Баланс</string>
+    <string name="savings">Сбережения</string>
+    <string name="current_balance">Текущий баланс</string>
     <string name="wallet">Кошелек</string>
     <string name="settings">Настройки</string>
     <string name="log_out">Выйти</string>
