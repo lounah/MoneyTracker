@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.lounah.moneytracker.data.entities.Transaction
 import com.lounah.wallettracker.R
+import org.fabiomsr.moneytextview.MoneyTextView
 
 
 class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHolder>() {
@@ -34,8 +35,8 @@ class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHol
         private val actionType: TextView by lazy {
             itemView.findViewById<TextView>(R.id.tv_action_type)
         }
-        private val amount: TextView by lazy {
-            itemView.findViewById<TextView>(R.id.tv_amount)
+        private val amount: MoneyTextView by lazy {
+            itemView.findViewById<MoneyTextView>(R.id.tv_amount)
         }
         private val currency: TextView by lazy {
             itemView.findViewById<TextView>(R.id.tv_currency)
@@ -44,7 +45,8 @@ class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHol
         fun bind(item: Transaction) = with(itemView) {
             date.text = DateFormat.format("MM/dd/yyyy hh:mm", item.date)
             actionType.text = item.type.toString()
-            amount.text = item.amount.toString()
+            amount.amount = item.amount.toFloat()
+            amount.setSymbol("")
             currency.text = item.currency.toString()
         }
     }

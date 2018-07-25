@@ -3,7 +3,6 @@ package com.lounah.moneytracker.ui.wallet
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -35,7 +34,8 @@ class WalletFragment : BaseFragment() {
     @Inject
     lateinit var factory: ViewModelProvider.Factory
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) = inflater.inflate(R.layout.fragment_wallet, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
+            = inflater.inflate(R.layout.fragment_wallet, container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -70,6 +70,7 @@ class WalletFragment : BaseFragment() {
                 else if (dy < 0 && fab_add.visibility != View.VISIBLE) fab_add.show()
             }
         })
+
     }
 
     private fun initViewModel() {
@@ -103,4 +104,5 @@ class WalletFragment : BaseFragment() {
     private fun processSuccessTransactionsResponse(data: List<Transaction>) {
         transactionsAdapter.updateDataSet(data)
     }
+
 }

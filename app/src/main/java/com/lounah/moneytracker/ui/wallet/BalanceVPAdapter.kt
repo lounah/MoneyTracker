@@ -9,10 +9,13 @@ import android.view.ViewGroup
 import com.lounah.moneytracker.data.entities.Balance
 import com.lounah.wallettracker.R
 import kotlinx.android.synthetic.main.item_balance.view.*
+import java.text.DecimalFormat
 
 class BalanceVPAdapter : PagerAdapter() {
 
     private var amount = mutableListOf<Balance>()
+
+    val df = DecimalFormat("0,00")
 
     override fun getCount() = amount.size
 
@@ -25,9 +28,8 @@ class BalanceVPAdapter : PagerAdapter() {
         val itemView = mLayoutInflater
                 .inflate(R.layout.item_balance, container, false)
 
-
-        itemView.tv_currency.text = amount[position].currency.toString()
-        itemView.tv_balance.text = amount[position].amount.toString()
+        itemView.tv_balance.setSymbol(amount[position].currency.toString())
+        itemView.tv_balance.amount = amount[position].amount.toFloat()
         itemView.tv_last_update_time.text = DateFormat.format("MM/dd/yyyy hh:mm",
                 amount[position].lastUpdate)
 
