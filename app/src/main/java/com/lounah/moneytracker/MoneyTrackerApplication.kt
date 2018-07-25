@@ -11,7 +11,7 @@ class MoneyTrackerApplication : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        installLeakCanary()
+        //installLeakCanary()
         installTimber()
     }
 

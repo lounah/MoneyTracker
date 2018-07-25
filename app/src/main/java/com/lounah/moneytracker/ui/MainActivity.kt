@@ -38,6 +38,14 @@ class MainActivity : DaggerAppCompatActivity(),
         initUI(savedInstanceState, supportFragmentManager)
     }
 
+    private fun initUI(savedInstanceState: Bundle?, supportFragmentManager: FragmentManager) {
+        nav_view.setNavigationItemSelectedListener(this)
+        initFragmentNavigationController(savedInstanceState, supportFragmentManager)
+        toolbar.title = resources.getString(R.string.wallet)
+        setSupportActionBar(toolbar)
+        initToggle()
+    }
+
     private fun initToggle() {
         if (!fragNavController.isRootFragment) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -50,27 +58,17 @@ class MainActivity : DaggerAppCompatActivity(),
         }
     }
 
-    private fun initUI(savedInstanceState: Bundle?, supportFragmentManager: FragmentManager) {
-        nav_view.setNavigationItemSelectedListener(this)
-        initFragmentNavigationController(savedInstanceState, supportFragmentManager)
-        toolbar.title = resources.getString(R.string.wallet)
-        setSupportActionBar(toolbar)
-        initToggle()
-    }
-
     private fun initFragmentNavigationController(savedInstanceState: Bundle?, supportFragmentManager: FragmentManager) {
         fragNavController = FragNavController.newBuilder(savedInstanceState, supportFragmentManager, FRAGMENT_CONTAINER_ID)
                 .transactionListener(object : FragNavController.TransactionListener {
                     override fun onFragmentTransaction(p0: Fragment?, p1: FragNavController.TransactionType?) {
-                        if (supportActionBar != null) {
-                            supportActionBar?.setDisplayHomeAsUpEnabled(!fragNavController.isRootFragment)
-                        }
+                        if (::fragNavController.isInitialized)
+                            setBackArrow(!fragNavController.isRootFragment)
                     }
 
                     override fun onTabTransaction(p0: Fragment?, p1: Int) {
-                        if (supportActionBar != null) {
-                            supportActionBar?.setDisplayHomeAsUpEnabled(!fragNavController.isRootFragment)
-                        }
+                        if (::fragNavController.isInitialized)
+                            setBackArrow(!fragNavController.isRootFragment)
                     }
 
                 })
@@ -78,6 +76,10 @@ class MainActivity : DaggerAppCompatActivity(),
                 .rootFragmentListener(this, 1)
                 .selectedTabIndex(BALANCE_FRAGMENT_ID)
                 .build()
+    }
+
+    private fun setBackArrow(state : Boolean) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(state)
     }
 
     override fun onBackPressed() {
@@ -111,7 +113,12 @@ class MainActivity : DaggerAppCompatActivity(),
         if (fragNavController.isRootFragment) {
             initToggle()
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-        } else drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            return
+        }
+        if (!fragNavController.isRootFragment) {
+            drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            return
+        }
     }
 
 
