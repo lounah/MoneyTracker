@@ -94,6 +94,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxJavaAndroidVersion"
 
+    // RxBinding
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+
     // LeakCanary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
@@ -103,6 +106,7 @@ dependencies {
 
     implementation 'com.ncapdevi:frag-nav:2.4.0'
     implementation 'org.fabiomsr:moneytextview:1.1.0'
+    implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
 
     // Tests
     testImplementation "junit:junit:$jUnitVersion"
