@@ -1,21 +1,23 @@
 package com.lounah.moneytracker.ui.wallet
 
 import android.content.Context
+import android.content.res.Resources
 import android.support.v4.view.PagerAdapter
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lounah.moneytracker.data.entities.Balance
+import com.lounah.moneytracker.data.entities.WalletType
 import com.lounah.wallettracker.R
 import kotlinx.android.synthetic.main.item_balance.view.*
 import java.text.DecimalFormat
+import android.support.v4.view.ViewPager
+
 
 class BalanceVPAdapter : PagerAdapter() {
 
     private var amount = mutableListOf<Balance>()
-
-    val df = DecimalFormat("0,00")
 
     override fun getCount() = amount.size
 
@@ -28,6 +30,11 @@ class BalanceVPAdapter : PagerAdapter() {
         val itemView = mLayoutInflater
                 .inflate(R.layout.item_balance, container, false)
 
+        itemView.tv_wallet_type.text = when (amount[position].balanceType) {
+            WalletType.CREDIT_CARD -> itemView.resources.getString(R.string.credit_card)
+            WalletType.BANK_ACCOUNT -> itemView.resources.getString(R.string.bank_account)
+            WalletType.CASH -> itemView.resources.getString(R.string.wallet)
+        }
         itemView.tv_balance.setSymbol(amount[position].currency.toString())
         itemView.tv_balance.amount = amount[position].amount.toFloat()
         itemView.tv_last_update_time.text = DateFormat.format("MM/dd/yyyy hh:mm",
@@ -39,7 +46,7 @@ class BalanceVPAdapter : PagerAdapter() {
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.removeAllViews()
+        (container as ViewPager).removeView(`object` as View)
     }
 
     // TODO: USE DIFF UTIL
