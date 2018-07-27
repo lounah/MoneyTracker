@@ -2,7 +2,6 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingEnd="12dp"
@@ -22,13 +21,12 @@
 
 
             <TextView
-                android:id="@+id/tv_savings_title_1"
+                android:id="@+id/tv_wallet_type"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/current_balance"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +45,7 @@
                 app:decimalMargin="8dp"
                 app:includeDecimalSeparator="true"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_savings_title_1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_wallet_type"
                 app:symbolGravity="bottom"
                 app:symbolMargin="8dp"
                 app:symbolTextColor="@color/grey"
@@ -74,7 +72,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="24dp"
-                android:text="сегодня в 12:42"
                 android:paddingBottom="@dimen/app_margin"
                 android:layout_marginBottom="@dimen/app_margin"
                 app:layout_constraintStart_toEndOf="@+id/tv_last_update"
