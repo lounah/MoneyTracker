@@ -1,10 +1,8 @@
 package com.lounah.moneytracker.ui.common
 
 import android.content.Context
-import android.os.Bundle
 import android.support.v4.app.Fragment
 import dagger.android.support.DaggerFragment
-import timber.log.Timber
 
 abstract class BaseFragment : DaggerFragment() {
 
