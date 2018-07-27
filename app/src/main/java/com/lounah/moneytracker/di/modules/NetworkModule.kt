@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class NetworkModule {
 
     companion object {
-        private const val API_URL = "https://lounah.com"
+        private const val API_URL = "https://free.currencyconverterapi.com/api/"
     }
 
     @Provides
