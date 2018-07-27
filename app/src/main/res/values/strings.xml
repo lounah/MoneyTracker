@@ -7,10 +7,31 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <style name="tbd">TBD</style>
-
     <string name="balance">Баланс</string>
+    <string name="food">Еда</string>
+    <string name="clothes">Одежда</string>
+    <string name="communal_payments">Коммунальные платежи</string>
+    <string name="rest">Отдых</string>
+    <string name="education">Образование</string>
+    <string name="home">Дом</string>
+    <string name="family">Семья</string>
+    <string name="auto">Автомобиль</string>
+    <string name="treatment">Лечение</string>
+    <string name="current_currency">Текущий курс валют</string>
+    <string name="salary">Зарплата</string>
+    <string name="other">Другое</string>
+    <string name="transaction_amount">Сумма транзакции</string>
+    <string name="transaction_currency">Валюта транзакции</string>
+    <string name="transaction_commentary">Комментарий к транзакции</string>
+    <string name="please_type_here_short_comment">Короткий комментарий</string>
+    <string name="create">Создать</string>
     <string name="savings">Сбережения</string>
     <string name="current_balance">Текущий баланс</string>
+    <string name="create_transaction">Добавить транзакцию</string>
+    <string name="transaction_category">Категория транзакции</string>
+    <string name="transaction_wallet">Кошелек транзакции</string>
+    <string name="credit_card">Кредитная карта</string>
+    <string name="bank_account">Банковский счет</string>
     <string name="wallet">Кошелек</string>
     <string name="settings">Настройки</string>
     <string name="log_out">Выйти</string>
@@ -25,5 +46,37 @@
     <string name="major_currency">Основная валюта</string>
     <string name="version_code">Версия приложения: %1$s</string>
     <string name="copyright">© 2018 #Lounah</string>
+    <string name="buy_rate">Покупка</string>
+    <string name="sell_rate">Продажа</string>
+    <string name="cash">Основной кошелек</string>
+    <string name="rub">RUB</string>
+    <string name="usd">USD</string>
+    <string name="eur">EUR</string>
+
+    <string-array name="currencies">
+        <item>@string/rub</item>
+        <item>@string/usd</item>
+        <item>@string/eur</item>
+    </string-array>
+
+    <string-array name="wallets">
+        <item>@string/cash</item>
+        <item>@string/bank_account</item>
+        <item>@string/credit_card</item>
+    </string-array>
+
+    <string-array name="transaction_categories">
+        <item>@string/food</item>
+        <item>@string/clothes</item>
+        <item>@string/rest</item>
+        <item>@string/education</item>
+        <item>@string/home</item>
+        <item>@string/family</item>
+        <item>@string/auto</item>
+        <item>@string/treatment</item>
+        <item>@string/salary</item>
+        <item>@string/other</item>
+    </string-array>
+
 </resources>
 

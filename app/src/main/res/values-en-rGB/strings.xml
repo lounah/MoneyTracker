@@ -10,7 +10,31 @@
 
     <string name="balance">Balance</string>
     <string name="savings">Savings</string>
+    <string name="food">Food</string>
+    <string name="clothes">Clothes</string>
+    <string name="communal_payments">Communal payments</string>
+    <string name="rest">Rest</string>
+    <string name="education">Education</string>
+    <string name="home">Home</string>
+    <string name="family">Family</string>
+    <string name="auto">Auto</string>
+    <string name="treatment">Treatment</string>
+    <string name="current_currency">Current exchange rate</string>
     <string name="current_balance">Current balance</string>
+    <style name="buy_rate">Buy rate</style>
+    <style name="sell_rate">Sell rate</style>
+    <string name="salary">Salary</string>
+    <string name="other">Other</string>
+    <string name="transaction_amount">Transaction amount</string>
+    <string name="transaction_currency">Transaction currency</string>
+    <string name="transaction_wallet">Transaction wallet</string>
+    <string name="transaction_commentary">Comment on transaction</string>
+    <string name="please_type_here_short_comment">Short comment</string>
+    <string name="create">Create</string>
+    <string name="create_transaction">Create transaction</string>
+    <string name="transaction_category">Transaction category</string>
+    <string name="credit_card">Credit card</string>
+    <string name="bank_account">Bank account</string>
     <string name="wallet">Wallet</string>
     <string name="settings">Settings</string>
     <string name="log_out">Log out</string>
@@ -25,4 +49,35 @@
     <string name="major_currency">Major currency</string>
     <string name="version_code">Version code: %1$s</string>
     <string name="copyright">© 2018 #Lounah</string>
+    <string name="cash">Cash</string>
+    <string name="rub">RUB</string>
+    <string name="usd">USD</string>
+    <string name="eur">EUR</string>
+
+    <string-array name="currencies">
+        <item>@string/rub</item>
+        <item>@string/usd</item>
+        <item>@string/eur</item>
+    </string-array>
+
+
+    <string-array name="wallets">
+        <item>@string/cash</item>
+        <item>@string/bank_account</item>
+        <item>@string/credit_card</item>
+    </string-array>
+
+    <string-array name="transaction_categories">
+        <item>@string/food</item>
+        <item>@string/clothes</item>
+        <item>@string/rest</item>
+        <item>@string/education</item>
+        <item>@string/home</item>
+        <item>@string/family</item>
+        <item>@string/auto</item>
+        <item>@string/treatment</item>
+        <item>@string/salary</item>
+        <item>@string/other</item>
+    </string-array>
+
 </resources>
