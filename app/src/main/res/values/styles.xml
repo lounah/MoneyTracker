@@ -12,7 +12,7 @@
 
     <style name="TextStyle">
         <item name="android:textSize">18sp</item>
-        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/black</item>
     </style>
 

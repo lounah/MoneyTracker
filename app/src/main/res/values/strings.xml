@@ -35,6 +35,9 @@
     <string name="wallet">Кошелек</string>
     <string name="settings">Настройки</string>
     <string name="log_out">Выйти</string>
+    <string name="all_transactions">Все транзакции</string>
+    <string name="incomes">Доходы</string>
+    <string name="expenses">Расходы</string>
     <string name="last_update_time">Обновлено: </string>
 
     <string name="settings_username">Пользователь</string>
@@ -49,6 +52,7 @@
     <string name="buy_rate">Покупка</string>
     <string name="sell_rate">Продажа</string>
     <string name="cash">Основной кошелек</string>
+    <string name="graphics">Статистика</string>
     <string name="rub">RUB</string>
     <string name="usd">USD</string>
     <string name="eur">EUR</string>
