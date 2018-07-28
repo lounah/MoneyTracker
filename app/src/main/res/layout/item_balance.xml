@@ -1,81 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingEnd="12dp"
-    android:paddingStart="12dp"
-    android:paddingTop="12dp"
-    android:theme="@style/AppTheme.NoActionBar">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <TextView
+        android:id="@+id/tv_wallet_type"
+        style="@style/TextStyle.Small"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="3dp">
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <org.fabiomsr.moneytextview.MoneyTextView
+        android:id="@+id/tv_balance"
+        style="@style/TextStyle.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="2dp"
+        app:amount="11143.55"
+        app:baseTextColor="@color/white"
+        app:baseTextSize="69sp"
+        app:decimalDigitsTextSize="21sp"
+        app:decimalGravity="top"
+        app:decimalMargin="8dp"
+        app:decimalSeparator="."
+        app:includeDecimalSeparator="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_wallet_type"
+        app:symbolGravity="start"
+        app:symbolMargin="8dp"
+        app:symbolTextColor="@color/white"
+        app:symbolTextSize="13sp" />
 
-
-            <TextView
-                android:id="@+id/tv_wallet_type"
-                style="@style/TextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="16dp"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <org.fabiomsr.moneytextview.MoneyTextView
-                android:id="@+id/tv_balance"
-                style="@style/TextStyle.Large"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                app:amount="11143.55"
-                app:baseTextSize="54sp"
-                app:decimalDigitsTextSize="30sp"
-                app:decimalGravity="bottom"
-                app:decimalMargin="8dp"
-                app:includeDecimalSeparator="true"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_wallet_type"
-                app:symbolGravity="bottom"
-                app:symbolMargin="8dp"
-                app:symbolTextColor="@color/grey"
-                app:symbolTextSize="30sp" />
-
-            <TextView
-                android:id="@+id/tv_last_update"
-                style="@style/TextStyle"
-                android:textColor="@color/grey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:text="@string/last_update_time"
-                android:paddingBottom="@dimen/app_margin"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_balance" />
-
-            <TextView
-                android:id="@+id/tv_last_update_time"
-                style="@style/TextStyle"
-                android:textColor="@color/grey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="24dp"
-                android:paddingBottom="@dimen/app_margin"
-                android:layout_marginBottom="@dimen/app_margin"
-                app:layout_constraintStart_toEndOf="@+id/tv_last_update"
-                app:layout_constraintTop_toBottomOf="@+id/tv_balance" />
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
-</FrameLayout>
+</android.support.constraint.ConstraintLayout>
