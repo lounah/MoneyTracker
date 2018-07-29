@@ -28,8 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <info.hoang8f.android.segmented.SegmentedGroup
-                    xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+                <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/rg_currencies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -142,7 +141,7 @@
                                 style="?android:attr/progressBarStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"/>
+                                android:layout_gravity="center" />
 
                         </FrameLayout>
 
@@ -258,8 +257,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:background="@color/white"
-            app:tabGravity="center"
             android:elevation="2dp"
+            app:tabGravity="center"
             app:tabIndicatorColor="@color/colorPrimaryDark"
             app:tabIndicatorHeight="2dp">
 
@@ -305,6 +304,7 @@
         app:layout_anchorGravity="bottom|end|right">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_new_income"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -314,6 +314,7 @@
             app:fab_title="@string/new_income" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_new_expense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

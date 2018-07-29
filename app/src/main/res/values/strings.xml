@@ -5,8 +5,9 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+
     <string name="action_settings">Settings</string>
-    <style name="tbd">TBD</style>
+
     <string name="balance">Баланс</string>
     <string name="food">Еда</string>
     <string name="clothes">Одежда</string>
@@ -17,14 +18,16 @@
     <string name="family">Семья</string>
     <string name="auto">Автомобиль</string>
     <string name="treatment">Лечение</string>
-    <string name="current_currency">Текущий курс валют</string>
     <string name="salary">Зарплата</string>
     <string name="other">Другое</string>
+
+    <string name="current_currency">Текущий курс валют</string>
     <string name="transaction_amount">Сумма транзакции</string>
     <string name="transaction_currency">Валюта транзакции</string>
     <string name="transaction_commentary">Комментарий к транзакции</string>
     <string name="please_type_here_short_comment">Короткий комментарий</string>
     <string name="create">Создать</string>
+
     <string name="savings">Сбережения</string>
     <string name="current_balance">Текущий баланс</string>
     <string name="create_transaction">Добавить транзакцию</string>
@@ -35,26 +38,30 @@
     <string name="wallet">Кошелек</string>
     <string name="settings">Настройки</string>
     <string name="log_out">Выйти</string>
+
     <string name="all_transactions">Все транзакции</string>
     <string name="incomes">Доходы</string>
     <string name="expenses">Расходы</string>
     <string name="last_update_time">Обновлено: </string>
-
     <string name="settings_username">Пользователь</string>
+
     <string name="developers">Разработчики</string>
     <string name="confidentiality_policy">Политика конфиденциальности</string>
     <string name="notifications">Уведомления</string>
     <string name="about_application">О приложении</string>
     <string name="other_settings">Другие настройки</string>
     <string name="major_currency">Основная валюта</string>
+
     <string name="version_code">Версия приложения: %1$s</string>
     <string name="copyright">© 2018 #Lounah</string>
+
     <string name="buy_rate">Покупка</string>
     <string name="sell_rate">Продажа</string>
     <string name="cash">Основной кошелек</string>
     <string name="statistics">Статистика</string>
     <string name="new_income">Новый доход</string>
     <string name="new_expense">Новый расход</string>
+
     <string name="error_loading_data">Произошла ошибка при загрузке данных</string>
     <string name="dollar_sign">$</string>
     <string name="euro_sign">€</string>
