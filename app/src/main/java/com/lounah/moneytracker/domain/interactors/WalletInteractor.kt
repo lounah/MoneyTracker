@@ -1,47 +1,46 @@
 package com.lounah.moneytracker.domain.interactors
 
-import com.lounah.moneytracker.data.datasource.remote.CurrencyApi
 import com.lounah.moneytracker.data.entities.*
 import com.lounah.moneytracker.data.entities.Currency
-import com.lounah.moneytracker.data.repositories.BalanceRepository
+import com.lounah.moneytracker.data.repositories.CurrencyRepository
 import com.lounah.moneytracker.data.repositories.TransactionsRepository
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.lounah.moneytracker.data.repositories.WalletRepository
 import javax.inject.Inject
 
-class WalletInteractor @Inject constructor(private val api: CurrencyApi,
-                                           private val balanceRepo: BalanceRepository,
+class WalletInteractor @Inject constructor(private val currencyRepository: CurrencyRepository,
+                                           private val walletRepository: WalletRepository,
                                            private val transactionsRepository: TransactionsRepository) {
 
     fun createTransaction(transaction: Transaction) {
         transactionsRepository.addTransaction(transaction)
     }
 
-    fun getTransactionsByWalletType(type: WalletType) {
+    fun getAllTransactionsByWallet(wallet: WalletType)
+        = transactionsRepository.getAllTransactionsByWallet(wallet)
 
-    }
+    fun getIncomeTransactionsByWallet(wallet: WalletType)
+        = transactionsRepository.getIncomeTransactionsByWallet(wallet)
 
-    fun getTransactionsByCurrency(currency: Currency) {
+    fun getExpenseTransactionsByWallet(wallet: WalletType)
+        = transactionsRepository.getExpenseTransactionsByWallet(wallet)
 
-    }
+    fun getTransactions()
+            = transactionsRepository.getAllTransactions()
 
-    fun getTransactions() = transactionsRepository.getAllTransactions()
+    fun getAccountBalanceByWallet(wallet: WalletType)
+        = walletRepository.getWalletByType(wallet)
 
-    fun getAccountBalanceByCurrency(currency: Currency) {
-        balanceRepo.getBalanceByCurrency(currency)
-    }
-
-    fun getAccountBalanceByType(type: WalletType) {
-        balanceRepo.getBalanceByType(type)
-    }
-
-    fun getAccountBalance() = balanceRepo.getBalance()
+    fun getWallets()
+            = walletRepository.getWallets()
 
     fun getExchangeRate(from: String, to: String) =
-            api.getExchangeRate("${from}_$to")
+            currencyRepository.getExchangeRate(from, to)
 
     fun getExchangeRates(ratesMap: Map<String, String>) {
+
+    }
+
+    fun convertWalletToCurrency(wallet: WalletType, toCurrency: Currency) {
 
     }
 }

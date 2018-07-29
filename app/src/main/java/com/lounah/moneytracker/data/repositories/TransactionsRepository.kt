@@ -27,12 +27,40 @@ class TransactionsRepository @Inject constructor(dao: TransactionsDao) {
                 Transaction(2, Date(), WalletType.BANK_ACCOUNT,"ЖКХ", TransactionType.COMMUNAL_PAYMENTS, 11564.00, Currency.RUB),
                 Transaction(3, Date(), WalletType.CREDIT_CARD,"Носки", TransactionType.CLOTHES, -104.00, Currency.RUB),
                 Transaction(4, Date(), WalletType.CREDIT_CARD,"Курсы", TransactionType.EDUCATION, -1632.00, Currency.RUB),
-                Transaction(4, Date(), WalletType.BANK_ACCOUNT,"Табрис", TransactionType.FOOD, -1632.00, Currency.RUB),
-                Transaction(4, Date(), WalletType.CASH,"Игрушки", TransactionType.FAMILY, -1632.00, Currency.RUB),
-                Transaction(4, Date(), WalletType.CASH,"Кафе", TransactionType.REST, -1632.00, Currency.RUB),
-                Transaction(4, Date(), WalletType.CASH,"Лекарства", TransactionType.TREATMENT, -1632.00, Currency.RUB),
-                Transaction(5, Date(), WalletType.CASH,"Запчасти", TransactionType.AUTO, -1423.00, Currency.RUB))
+                Transaction(5, Date(), WalletType.BANK_ACCOUNT,"Табрис", TransactionType.FOOD, -1632.00, Currency.RUB),
+                Transaction(6, Date(), WalletType.CASH,"Игрушки", TransactionType.FAMILY, -1632.00, Currency.RUB),
+                Transaction(7, Date(), WalletType.CASH,"Кафе", TransactionType.REST, -1632.00, Currency.RUB),
+                Transaction(8, Date(), WalletType.CASH,"Лекарства", TransactionType.TREATMENT, -1632.00, Currency.RUB),
+                Transaction(9, Date(), WalletType.CASH,"Запчасти", TransactionType.AUTO, -1423.00, Currency.RUB))
         return result
+
+    }
+
+    fun getAllIncomeTransactions() {
+
+    }
+
+    fun getAllExpenseTransactions() {
+
+    }
+
+    fun getAllTransactionsByWallet(wallet: WalletType) {
+
+    }
+
+    fun getIncomeTransactionsByWallet(wallet: WalletType) {
+
+    }
+
+    fun getExpenseTransactionsByWallet(wallet: WalletType) {
+
+    }
+
+    fun deleteTransaction(transaction: Transaction) {
+
+    }
+
+    fun updateTransaction(transaction: Transaction) {
 
     }
 
