@@ -12,11 +12,11 @@ import kotlinx.android.synthetic.main.fragment_about_app.*
 
 class AboutFragment : BaseFragment() {
 
+    override val layoutRes: Int
+        get() = R.layout.fragment_about_app
+
     override val TAG: String
         get() = "ABOUT_FRAGMENT"
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
-            = inflater.inflate(R.layout.fragment_about_app, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
