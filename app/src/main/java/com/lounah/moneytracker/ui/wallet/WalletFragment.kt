@@ -199,5 +199,4 @@ class WalletFragment : BaseFragment(),
     private fun showToast(msgId: Int) {
         Toast.makeText(context, msgId, Toast.LENGTH_SHORT).show()
     }
-
 }
