@@ -1,23 +1,20 @@
 package com.lounah.moneytracker.ui.wallet
 
 import android.content.Context
-import android.content.res.Resources
 import android.support.v4.view.PagerAdapter
-import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.lounah.moneytracker.data.entities.Balance
 import com.lounah.moneytracker.data.entities.WalletType
 import com.lounah.wallettracker.R
-import java.text.DecimalFormat
 import android.support.v4.view.ViewPager
+import com.lounah.moneytracker.data.entities.Wallet
 import kotlinx.android.synthetic.main.item_balance.view.*
 
 
 class BalanceVPAdapter : PagerAdapter() {
 
-    private var amount = mutableListOf<Balance>()
+    private var amount = mutableListOf<Wallet>()
 
     override fun getCount() = amount.size
 
@@ -48,7 +45,7 @@ class BalanceVPAdapter : PagerAdapter() {
     }
 
     // TODO: USE DIFF UTIL
-    fun updateDataSet(amount: List<Balance>?) {
+    fun updateDataSet(amount: List<Wallet>?) {
         if (amount != null) {
             this.amount.clear()
             this.amount.addAll(amount)

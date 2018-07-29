@@ -8,9 +8,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.lounah.moneytracker.data.entities.Transaction
-import com.lounah.moneytracker.data.entities.TransactionType
+import com.lounah.moneytracker.util.ResourcesSelector
 import com.lounah.wallettracker.R
 import org.fabiomsr.moneytextview.MoneyTextView
+
+/*
+    Вот здесь все совсем плохо -- типы транзакций вшиты и хранятся в enum'ax, которые сложно локализовать
+    Эту проблему я решу тем, что буду подгружать категории из БД
+    Пока что пришлось писать utility-класс @ResourcesSelector, и это ужасно
+ */
 
 class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHolder>() {
 
@@ -56,12 +62,11 @@ class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHol
             itemView.findViewById<MoneyTextView>(R.id.tv_amount)
         }
 
-
         fun bind(item: Transaction) = with(itemView) {
             if (adapterPosition == 0) {
                 date.text = DateFormat.format("dd/MM/yyyy", item.date)
             } else {
-                if (item.date.day > transactions[adapterPosition-1].date.day) {
+                if (item.date.day > transactions[adapterPosition - 1].date.day) {
                     date.text = DateFormat.format("dd/MM/yyyy hh:mm", item.date)
                 } else {
                     date.visibility = View.GONE
@@ -70,43 +75,16 @@ class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHol
             description.text = item.description
             time.text = DateFormat.format("hh:mm", item.date)
 
-            // ужасный блок кода, который нужно исправить, наверное
+            transactionType.text = ResourcesSelector.fromTransactionTypeToString(item.type, itemView)
 
-            transactionType.text = when(item.type) {
-                TransactionType.AUTO -> itemView.resources.getString(R.string.auto)
-                TransactionType.TREATMENT -> itemView.resources.getString(R.string.treatment)
-                TransactionType.REST -> itemView.resources.getString(R.string.rest)
-                TransactionType.FAMILY -> itemView.resources.getString(R.string.family)
-                TransactionType.CLOTHES -> itemView.resources.getString(R.string.clothes)
-                TransactionType.EDUCATION -> itemView.resources.getString(R.string.education)
-                TransactionType.COMMUNAL_PAYMENTS -> itemView.resources.getString(R.string.communal_payments)
-                TransactionType.HOME -> itemView.resources.getString(R.string.home)
-                TransactionType.FOOD -> itemView.resources.getString(R.string.food)
-                TransactionType.OTHER -> itemView.resources.getString(R.string.other)
-                TransactionType.SALARY -> itemView.resources.getString(R.string.salary)
-            }
-
-            val iconImageResource = when(item.type) {
-                TransactionType.AUTO -> R.drawable.ic_auto
-                TransactionType.TREATMENT -> R.drawable.ic_treatment
-                TransactionType.REST -> R.drawable.ic_rest
-                TransactionType.FAMILY -> R.drawable.ic_family
-                TransactionType.CLOTHES -> R.drawable.ic_clothes
-                TransactionType.EDUCATION -> R.drawable.ic_education
-                TransactionType.COMMUNAL_PAYMENTS -> R.drawable.ic_communal_payments
-                TransactionType.HOME -> R.drawable.ic_home
-                TransactionType.FOOD -> R.drawable.ic_food
-                TransactionType.OTHER -> R.drawable.ic_other
-                TransactionType.SALARY -> R.drawable.ic_salary
-            }
+            val iconImageResource = ResourcesSelector.fromTransactionTypeToDrawable(item.type)
 
             icon.setImageResource(iconImageResource)
 
             if (item.amount < 0) {
                 amount.setBaseColor(itemView.resources.getColor(R.color.colorExpense))
                 amount.setDecimalsColor(itemView.resources.getColor(R.color.colorExpense))
-            }
-            else {
+            } else {
                 amount.setBaseColor(itemView.resources.getColor(R.color.colorIncome))
                 amount.setDecimalsColor(itemView.resources.getColor(R.color.colorIncome))
             }
@@ -114,16 +92,6 @@ class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHol
             amount.setSymbol("")
             currency.text = item.currency.toString()
         }
-    }
-
-    fun addTransaction(transaction: Transaction) {
-        transactions.add(transaction)
-        notifyDataSetChanged()
-    }
-
-    fun addTransactions(transactions: MutableList<Transaction>) {
-        transactions.addAll(transactions)
-        notifyDataSetChanged()
     }
 
     // TODO: USE DIFF UTIL

@@ -3,19 +3,17 @@ package com.lounah.moneytracker.ui.wallet
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import com.lounah.moneytracker.data.entities.Balance
 import com.lounah.moneytracker.data.entities.Status
 import com.lounah.moneytracker.data.entities.Transaction
+import com.lounah.moneytracker.data.entities.Wallet
 import com.lounah.moneytracker.ui.MainActivity
 import com.lounah.moneytracker.ui.common.BaseFragment
+import com.lounah.moneytracker.ui.wallet.addtransaction.AddTransactionFragment
 import com.lounah.moneytracker.util.ZoomOutPageTransformer
 import com.lounah.wallettracker.R
 import kotlinx.android.synthetic.main.fragment_wallet.*
@@ -23,8 +21,10 @@ import java.text.DecimalFormat
 import javax.inject.Inject
 
 
-class WalletFragment : BaseFragment(),
-        AddTransactionDialogFragment.AddTransactionCallback {
+class WalletFragment : BaseFragment() {
+
+    override val layoutRes: Int
+        get() = R.layout.fragment_wallet
 
     override val TAG: String
         get() = "WALLET_FRAGMENT"
@@ -33,7 +33,6 @@ class WalletFragment : BaseFragment(),
 
     private lateinit var pagerAdapter: BalanceVPAdapter
     private lateinit var transactionsAdapter: TransactionsRVAdapter
-    private lateinit var addTransactionDialogFragment: AddTransactionDialogFragment
 
     @Inject
     lateinit var viewModel: WalletViewModel
@@ -41,14 +40,10 @@ class WalletFragment : BaseFragment(),
     @Inject
     lateinit var factory: ViewModelProvider.Factory
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
-            = inflater.inflate(R.layout.fragment_wallet, container, false)
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, factory).get(WalletViewModel::class.java)
-        viewModel.fetchFirstFieldExchangeRate("USD", "RUB")
-        viewModel.fetchSecondFieldExchangeRate("EUR", "RUB")
+        fetchFavouritesExchangeRates()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,11 +52,39 @@ class WalletFragment : BaseFragment(),
         initUI()
     }
 
+    override fun onResume() {
+        super.onResume()
+        fab_add.collapse()
+    }
+
+    // fav exchange rates будут браться из sharedPrefs, а туда заноситься из настроек
+    // после ПР реализую это, и подгружать буду в Map, а не в отдельные поля
+    // пока что это ужасно
+    // смотри UI -- карточка с текущими курсами валют
+    private fun fetchFavouritesExchangeRates() {
+        viewModel.fetchFirstFieldExchangeRate("USD", "RUB")
+        viewModel.fetchSecondFieldExchangeRate("EUR", "RUB")
+    }
+
     private fun initUI() {
+        initFab()
         initCurrenciesRadioGroup()
         initWalletViewPager()
         initTransactionsList()
         initCurrencies()
+    }
+
+    private fun initFab() {
+        fab_new_income.setOnClickListener { addNewIncome() }
+        fab_new_expense.setOnClickListener { addNewExpense() }
+    }
+
+    private fun addNewIncome() {
+        mFragmentNavigator.showDialogFragment(AddTransactionFragment.newInstance(true))
+    }
+
+    private fun addNewExpense() {
+        mFragmentNavigator.showDialogFragment(AddTransactionFragment.newInstance(false))
     }
 
     private fun initCurrenciesRadioGroup() {
@@ -117,10 +140,6 @@ class WalletFragment : BaseFragment(),
             processSuccessTransactionsResponse(response!!)
         })
 
-        viewModel.addingTransactionResult.observe(this, Observer {
-
-        })
-
         viewModel.firstFieldExchangeRate.observe(this, Observer { response ->
             when (response!!.status) {
                 Status.ERROR -> processErrorState()
@@ -148,47 +167,42 @@ class WalletFragment : BaseFragment(),
         viewModel.secondFieldExchangeRate.removeObservers(this)
         viewModel.currentBalance.removeObservers(this)
         viewModel.transactions.removeObservers(this)
-        viewModel.addingTransactionResult.removeObservers(this)
     }
 
     override fun setUpToolbarTitle(resId: Int) {
         (activity as MainActivity).onUpdateToolbarTitle(resId)
     }
 
-    override fun onTransactionCreated(transaction: Transaction) {
-        viewModel.addTransaction(transaction)
-        addTransactionDialogFragment.dismiss()
-    }
-
-    private fun addTransaction() {
-        addTransactionDialogFragment = AddTransactionDialogFragment()
-        addTransactionDialogFragment.show(childFragmentManager, TAG)
-    }
-
     private fun processErrorState() {
+        hideProgressBar()
+        showToast(R.string.error_loading_data)
+    }
+
+    private fun hideProgressBar() {
         progressBar.visibility = View.GONE
         pb_placeholder.visibility = View.GONE
-        showToast(R.string.error_loading_data)
     }
 
     private fun processSuccessFirstExchangeRate(rate: Double?) {
         currency_top_exchange_rate.text = formatter.format(rate)
-        progressBar.visibility = View.GONE
+        hideProgressBar()
     }
 
     private fun processSuccessSecondExchangeRate(rate: Double?) {
         currency_bottom_exchange_rate.text = formatter.format(rate)
-        progressBar.visibility = View.GONE
-        pb_placeholder.visibility = View.GONE
+        hideProgressBar()
     }
 
-
     private fun processLoadingState() {
+        showProgressBar()
+    }
+
+    private fun showProgressBar() {
         pb_placeholder.visibility = View.VISIBLE
         progressBar.visibility = View.VISIBLE
     }
 
-    private fun processSuccessBalanceResponse(data: List<Balance>) {
+    private fun processSuccessBalanceResponse(data: List<Wallet>) {
         pagerAdapter.updateDataSet(data)
     }
 
