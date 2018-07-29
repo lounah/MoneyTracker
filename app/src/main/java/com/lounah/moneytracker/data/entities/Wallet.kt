@@ -4,8 +4,8 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import java.util.Date
 
-@Entity(tableName = "balance")
-data class Balance(
+@Entity(tableName = "wallets")
+data class Wallet(
         @PrimaryKey(autoGenerate = true)
         val id: Int,
         val amount: Double = 0.0,

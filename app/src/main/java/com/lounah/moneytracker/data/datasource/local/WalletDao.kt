@@ -3,12 +3,12 @@ package com.lounah.moneytracker.data.datasource.local
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Query
-import com.lounah.moneytracker.data.entities.Balance
+import com.lounah.moneytracker.data.entities.Wallet
 
 
 @Dao
-interface BalanceDao : BaseDao<Balance> {
+interface WalletDao : BaseDao<Wallet> {
 
-    @Query("SELECT * FROM balance")
-    fun getBalance(): LiveData<List<Balance>>
+    @Query("SELECT * FROM wallets")
+    fun getBalance(): LiveData<List<Wallet>>
 }
