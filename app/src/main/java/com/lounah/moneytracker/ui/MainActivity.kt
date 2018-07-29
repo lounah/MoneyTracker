@@ -7,7 +7,9 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
+import android.view.Menu
 import android.view.MenuItem
+import com.lounah.moneytracker.ui.charts.ChartFragment
 import com.lounah.moneytracker.ui.common.BaseFragment
 import com.lounah.moneytracker.ui.settings.SettingsFragment
 import com.lounah.moneytracker.ui.wallet.WalletFragment
@@ -82,6 +84,11 @@ class MainActivity : DaggerAppCompatActivity(),
         supportActionBar?.setDisplayHomeAsUpEnabled(state)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -98,11 +105,11 @@ class MainActivity : DaggerAppCompatActivity(),
         fragNavController.onSaveInstanceState(outState)
     }
 
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         when (id) {
             android.R.id.home -> fragNavController.popFragment()
+            R.id.graphics -> fragNavController.pushFragment(ChartFragment())
         }
         return true
     }
@@ -112,20 +119,33 @@ class MainActivity : DaggerAppCompatActivity(),
         toolbar.setNavigationOnClickListener { onBackPressed() }
         if (fragNavController.isRootFragment) {
             initToggle()
+            onShowMenuItem(R.id.graphics)
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
             return
         }
         if (!fragNavController.isRootFragment) {
+            onHideMenuItem(R.id.graphics)
             drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             return
         }
     }
 
+    private fun onShowMenuItem(resId: Int) {
+        toolbar.menu.findItem(resId)?.isVisible = true
+    }
+
+    private fun onHideMenuItem(resId: Int) {
+        toolbar.menu.findItem(resId)?.isVisible = false
+    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_wallet -> fragNavController.switchTab(BALANCE_FRAGMENT_ID)
-            R.id.nav_settings -> pushFragment(SettingsFragment(), false)
+            R.id.nav_wallet -> {
+                fragNavController.switchTab(BALANCE_FRAGMENT_ID)
+            }
+            R.id.nav_settings -> {
+                pushFragment(SettingsFragment(), false)
+            }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
@@ -138,6 +158,13 @@ class MainActivity : DaggerAppCompatActivity(),
                             R.anim.fade_out)
                     .build())
         } else fragNavController.pushFragment(fragment, FragNavTransactionOptions.newBuilder()
+                .build())
+    }
+
+    override fun showDialogFragment(fragment: Fragment) {
+        fragNavController.pushFragment(fragment, FragNavTransactionOptions.newBuilder()
+                .customAnimations(R.anim.abc_shrink_fade_out_from_bottom,
+                        R.anim.abc_shrink_fade_out_from_bottom)
                 .build())
     }
 
