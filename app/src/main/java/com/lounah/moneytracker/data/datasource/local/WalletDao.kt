@@ -8,7 +8,6 @@ import com.lounah.moneytracker.data.entities.Wallet
 
 @Dao
 interface WalletDao : BaseDao<Wallet> {
-
     @Query("SELECT * FROM wallets")
     fun getBalance(): LiveData<List<Wallet>>
 }
