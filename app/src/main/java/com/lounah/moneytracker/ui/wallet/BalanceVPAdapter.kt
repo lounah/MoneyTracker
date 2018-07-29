@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import com.lounah.moneytracker.data.entities.Balance
 import com.lounah.moneytracker.data.entities.WalletType
 import com.lounah.wallettracker.R
-import kotlinx.android.synthetic.main.item_balance.view.*
 import java.text.DecimalFormat
 import android.support.v4.view.ViewPager
+import kotlinx.android.synthetic.main.item_balance.view.*
 
 
 class BalanceVPAdapter : PagerAdapter() {
@@ -37,8 +37,6 @@ class BalanceVPAdapter : PagerAdapter() {
         }
         itemView.tv_balance.setSymbol(amount[position].currency.toString())
         itemView.tv_balance.amount = amount[position].amount.toFloat()
-        itemView.tv_last_update_time.text = DateFormat.format("MM/dd/yyyy hh:mm",
-                amount[position].lastUpdate)
 
         container.addView(itemView)
 

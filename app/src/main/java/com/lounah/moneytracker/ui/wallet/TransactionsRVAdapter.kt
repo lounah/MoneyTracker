@@ -12,7 +12,6 @@ import com.lounah.moneytracker.data.entities.TransactionType
 import com.lounah.wallettracker.R
 import org.fabiomsr.moneytextview.MoneyTextView
 
-
 class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHolder>() {
 
     private val transactions = mutableListOf<Transaction>()
@@ -59,7 +58,6 @@ class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHol
 
 
         fun bind(item: Transaction) = with(itemView) {
-
             if (adapterPosition == 0) {
                 date.text = DateFormat.format("dd/MM/yyyy", item.date)
             } else {

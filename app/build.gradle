@@ -29,6 +29,10 @@ android {
             useProguard false
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
 }
 
 ext {
@@ -54,6 +58,10 @@ ext {
 
 kapt {
     generateStubs = true
+}
+
+androidExtensions {
+    experimental = true
 }
 
 dependencies {
@@ -107,6 +115,9 @@ dependencies {
     implementation 'com.ncapdevi:frag-nav:2.4.0'
     implementation 'org.fabiomsr:moneytextview:1.1.0'
     implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
+    implementation 'info.hoang8f:android-segmented:1.0.6'
+    implementation 'com.getbase:floatingactionbutton:1.10.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
     // Tests
     testImplementation "junit:junit:$jUnitVersion"

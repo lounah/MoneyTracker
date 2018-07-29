@@ -37,8 +37,12 @@
     <string name="bank_account">Bank account</string>
     <string name="wallet">Wallet</string>
     <string name="settings">Settings</string>
+    <string name="statistics">Stats</string>
     <string name="all_transactions">All transactions</string>
+    <string name="new_income">New income</string>
+    <string name="new_expense">New expense</string>
     <string name="incomes">Incomes</string>
+    <string name="error_loading_data">Error while loading data</string>
     <string name="expenses">Expenses</string>
     <string name="log_out">Log out</string>
     <string name="last_update_time">Updated at: </string>

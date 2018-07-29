@@ -6,7 +6,7 @@
     <item
         android:id="@+id/graphics"
         android:icon="@drawable/ic_graphics_24dp"
-        android:title="@string/graphics"
+        android:title="@string/statistics"
         app:showAsAction="ifRoom" />
 
 </menu>

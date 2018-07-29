@@ -10,6 +10,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="menu_labels_style">
+        <item name="android:background">@drawable/fab_label_background</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="TextStyle">
         <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">sans-serif</item>

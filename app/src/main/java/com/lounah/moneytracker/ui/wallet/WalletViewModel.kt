@@ -9,23 +9,22 @@ import com.lounah.moneytracker.data.entities.Resource
 import com.lounah.moneytracker.data.entities.Transaction
 import com.lounah.moneytracker.domain.interactors.WalletInteractor
 import com.lounah.moneytracker.util.AbsentLiveData
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
+import java.util.concurrent.ScheduledThreadPoolExecutor
 import javax.inject.Inject
 
 
 class WalletViewModel @Inject constructor(private val interactor: WalletInteractor) : ViewModel() {
 
     private val refreshState = MutableLiveData<Boolean>()
-    private val scheduledExecutor = Executors.newSingleThreadScheduledExecutor()
 
     private lateinit var transactionAddingDisposable: Disposable
-    private lateinit var exchangeRateGetDisposable: Disposable
+    private lateinit var exchangeRateGetDisposable: CompositeDisposable
 
     val addingTransactionResult = MutableLiveData<Boolean>()
 
@@ -39,7 +38,8 @@ class WalletViewModel @Inject constructor(private val interactor: WalletInteract
                 if (value) fetchTransactions() else AbsentLiveData.create()
             }
 
-    val exchangeRates = MutableLiveData<Resource<Double>>()
+    val firstFieldExchangeRate = MutableLiveData<Resource<Double>>()
+    val secondFieldExchangeRate = MutableLiveData<Resource<Double>>()
 
     private fun getBalance() = interactor.getAccountBalance()
 
@@ -47,22 +47,35 @@ class WalletViewModel @Inject constructor(private val interactor: WalletInteract
 
     fun refreshCurrentBalance() {
         refreshState.value = true
-        scheduledExecutor.schedule({ refreshState.postValue(false) }, 2, TimeUnit.SECONDS)
     }
 
     fun addTransaction(transaction: Transaction) {
         interactor.createTransaction(transaction)
     }
 
-    fun fetchExchangeRates(from: String, to: String) {
+    fun fetchFirstFieldExchangeRate(from: String, to: String) {
+
         interactor.getExchangeRate(from, to).enqueue(object : Callback<ResponseBody> {
             override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
-                exchangeRates.postValue(Resource.error("", 0.0))
+                firstFieldExchangeRate.postValue(Resource.error("", 0.0))
             }
 
             override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
                 val jsonResponse = response?.body()?.string()
-                exchangeRates.postValue(Resource.success(convertJsonToExchangeRate(jsonResponse)))
+                firstFieldExchangeRate.postValue(Resource.success(convertJsonToExchangeRate(jsonResponse)))
+            }
+        })
+    }
+
+    fun fetchSecondFieldExchangeRate(from: String, to: String) {
+        interactor.getExchangeRate(from, to).enqueue(object : Callback<ResponseBody> {
+            override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
+                secondFieldExchangeRate.postValue(Resource.error("", 0.0))
+            }
+
+            override fun onResponse(call: Call<ResponseBody>?, response: Response<ResponseBody>?) {
+                val jsonResponse = response?.body()?.string()
+                secondFieldExchangeRate.postValue(Resource.success(convertJsonToExchangeRate(jsonResponse)))
             }
         })
     }
@@ -78,7 +91,6 @@ class WalletViewModel @Inject constructor(private val interactor: WalletInteract
         if (::exchangeRateGetDisposable.isInitialized && !exchangeRateGetDisposable.isDisposed) {
             exchangeRateGetDisposable.dispose()
         }
-        scheduledExecutor.shutdown()
     }
 
 }

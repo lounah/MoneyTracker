@@ -2,7 +2,7 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/test_fragment_wallet_cl"
+    android:id="@+id/fragment_wallet_cl"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -84,7 +84,7 @@
                     android:weightSum="2">
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/cv_credits_and_doubts"
+                        android:id="@+id/cv_currencies"
                         android:layout_width="wrap_content"
                         android:layout_height="128dp"
                         android:layout_marginBottom="16dp"
@@ -102,7 +102,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="top|left"
                             android:layout_margin="16dp"
-                            android:text="$" />
+                            android:text="@string/dollar_sign" />
 
                         <TextView
                             android:id="@+id/tv_currency_sign_bottom"
@@ -111,7 +111,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|bottom"
                             android:layout_margin="16dp"
-                            android:text="€" />
+                            android:text="@string/euro_sign" />
 
                         <TextView
                             android:id="@+id/currency_top_exchange_rate"
@@ -120,7 +120,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end|top"
                             android:layout_margin="16dp"
-                            android:text="61.23" />
+                            android:text="@string/dash" />
 
                         <TextView
                             android:id="@+id/currency_bottom_exchange_rate"
@@ -129,7 +129,22 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end|bottom"
                             android:layout_margin="16dp"
-                            android:text="71.03" />
+                            android:text="@string/dash" />
+
+                        <FrameLayout
+                            android:id="@+id/pb_placeholder"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white">
+
+                            <ProgressBar
+                                android:id="@+id/progressBar"
+                                style="?android:attr/progressBarStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"/>
+
+                        </FrameLayout>
 
                     </android.support.v7.widget.CardView>
 
@@ -244,6 +259,7 @@
             android:layout_alignParentTop="true"
             android:background="@color/white"
             app:tabGravity="center"
+            android:elevation="2dp"
             app:tabIndicatorColor="@color/colorPrimaryDark"
             app:tabIndicatorHeight="2dp">
 
@@ -276,18 +292,37 @@
             android:clipToPadding="false" />
     </RelativeLayout>
 
-    <android.support.design.widget.FloatingActionButton
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/fab_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_add_24dp"
-        app:elevation="4dp"
-        app:fabSize="normal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        app:fab_addButtonColorNormal="@color/colorAccent"
+        app:fab_addButtonSize="normal"
+        app:fab_labelStyle="@style/menu_labels_style"
+        app:fab_labelsPosition="left"
         app:layout_anchor="@id/rv_actions"
-        app:layout_anchorGravity="bottom|end|right" />
+        app:layout_anchorGravity="bottom|end|right">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            app:fab_colorNormal="@color/colorIncome"
+            app:fab_icon="@drawable/ic_income"
+            app:fab_size="mini"
+            app:fab_title="@string/new_income" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            app:fab_colorNormal="@color/colorExpense"
+            app:fab_icon="@drawable/ic_expense"
+            app:fab_size="mini"
+            app:fab_title="@string/new_expense" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
 
 </android.support.design.widget.CoordinatorLayout>
