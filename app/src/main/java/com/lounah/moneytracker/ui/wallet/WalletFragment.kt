@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -89,6 +90,11 @@ class WalletFragment : BaseFragment() {
 
     private fun initCurrenciesRadioGroup() {
         rg_currencies.check(R.id.btn_rub)
+        rg_currencies.setOnCheckedChangeListener { _, checkedId ->
+            when(checkedId) {
+
+            }
+        }
     }
 
     private fun initWalletViewPager() {
@@ -103,6 +109,25 @@ class WalletFragment : BaseFragment() {
         rv_actions.adapter = transactionsAdapter
         val linearLayoutManager = LinearLayoutManager(context)
         rv_actions.layoutManager = linearLayoutManager
+
+        tl_transaction_types.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when(tab?.position) {
+                    0 -> viewModel.refreshCurrentBalance()
+                    1 -> viewModel.getIncomeTransactions()
+                    2 -> viewModel.getExpenseTransactions()
+                }
+            }
+
+        })
 
         rv_actions.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
@@ -137,7 +162,18 @@ class WalletFragment : BaseFragment() {
         })
 
         viewModel.transactions.observe(this, Observer { response ->
-            processSuccessTransactionsResponse(response!!)
+            if (tl_transaction_types.selectedTabPosition == 0)
+                processSuccessTransactionsResponse(response!!)
+        })
+
+        viewModel.incomeTransactions.observe(this, Observer { response ->
+            if (tl_transaction_types.selectedTabPosition == 1)
+                processSuccessTransactionsResponse(response!!)
+        })
+
+        viewModel.expenseTransactions.observe(this, Observer { response ->
+            if (tl_transaction_types.selectedTabPosition == 2)
+                processSuccessTransactionsResponse(response!!)
         })
 
         viewModel.firstFieldExchangeRate.observe(this, Observer { response ->

@@ -63,6 +63,7 @@ class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHol
         }
 
         fun bind(item: Transaction) = with(itemView) {
+            date.visibility = View.VISIBLE
             if (adapterPosition == 0) {
                 date.text = DateFormat.format("dd/MM/yyyy", item.date)
             } else {

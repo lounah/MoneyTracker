@@ -27,11 +27,16 @@ class WalletInteractor @Inject constructor(private val currencyRepository: Curre
     fun getTransactions()
             = transactionsRepository.getAllTransactions()
 
+    fun getAllIncomeTransactions()
+        = transactionsRepository.getAllIncomeTransactions()
+
+    fun getAllExpenseTransactions()
+        = transactionsRepository.getAllExpenseTransactions()
+
     fun getAccountBalanceByWallet(wallet: WalletType)
         = walletRepository.getWalletByType(wallet)
 
-    fun getWallets()
-            = walletRepository.getWallets()
+    fun getWallets() = walletRepository.getWallets()
 
     fun getExchangeRate(from: String, to: String) =
             currencyRepository.getExchangeRate(from, to)

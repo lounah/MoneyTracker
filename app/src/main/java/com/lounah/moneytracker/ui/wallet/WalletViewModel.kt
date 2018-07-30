@@ -21,6 +21,9 @@ class WalletViewModel @Inject constructor(private val interactor: WalletInteract
 
     private val refreshState = MutableLiveData<Boolean>()
 
+    private val shouldFetchAllIncomeTransactions = MutableLiveData<Boolean>()
+    private val shouldFetchAllExpenseTransactions = MutableLiveData<Boolean>()
+
     private lateinit var exchangeRateGetDisposable: CompositeDisposable
 
     val currentBalance: LiveData<Resource<List<Wallet>>> =
@@ -33,6 +36,16 @@ class WalletViewModel @Inject constructor(private val interactor: WalletInteract
                 if (value) fetchTransactions() else AbsentLiveData.create()
             }
 
+    val incomeTransactions: LiveData<List<Transaction>> =
+            Transformations.switchMap(shouldFetchAllIncomeTransactions) { value ->
+                if (value) fetchIncomeTransactions() else AbsentLiveData.create()
+            }
+
+    val expenseTransactions: LiveData<List<Transaction>> =
+            Transformations.switchMap(shouldFetchAllExpenseTransactions) { value ->
+                if (value) fetchExpenseTransactions() else AbsentLiveData.create()
+            }
+
     val firstFieldExchangeRate = MutableLiveData<Resource<Double>>()
     val secondFieldExchangeRate = MutableLiveData<Resource<Double>>()
 
@@ -40,8 +53,20 @@ class WalletViewModel @Inject constructor(private val interactor: WalletInteract
 
     private fun fetchTransactions() = interactor.getTransactions()
 
+    private fun fetchIncomeTransactions() = interactor.getAllIncomeTransactions()
+
+    private fun fetchExpenseTransactions() = interactor.getAllExpenseTransactions()
+
     fun refreshCurrentBalance() {
         refreshState.value = true
+    }
+
+    fun getIncomeTransactions() {
+        shouldFetchAllIncomeTransactions.value = true
+    }
+
+    fun getExpenseTransactions() {
+        shouldFetchAllExpenseTransactions.value = true
     }
 
     fun fetchFirstFieldExchangeRate(from: String, to: String) {

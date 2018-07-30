@@ -8,7 +8,7 @@ import com.lounah.moneytracker.data.entities.Currency
 import java.util.*
 import javax.inject.Inject
 
-class WalletRepository @Inject constructor(dao: WalletDao) {
+class WalletRepository @Inject constructor(private val dao: WalletDao) {
 
     fun getWallets() : LiveData<Resource<List<Wallet>>> {
         val result = MutableLiveData<Resource<List<Wallet>>>()
@@ -19,16 +19,15 @@ class WalletRepository @Inject constructor(dao: WalletDao) {
         return result
     }
 
-    fun getWalletByType(type: WalletType) {
-
-    }
+    fun getWalletByType(type: WalletType)
+        = dao.getWalletByType(type)
 
     fun addWallet(wallet: Wallet) {
-
+        dao.insert(wallet)
     }
 
     fun deleteWallet(wallet: Wallet) {
-
+        dao.delete(wallet)
     }
 
 }
