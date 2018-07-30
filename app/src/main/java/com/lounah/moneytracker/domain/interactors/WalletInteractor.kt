@@ -13,6 +13,7 @@ class WalletInteractor @Inject constructor(private val currencyRepository: Curre
 
     fun createTransaction(transaction: Transaction) {
         transactionsRepository.addTransaction(transaction)
+        walletRepository.updateWalletByTransaction(transaction)
     }
 
     fun getAllTransactionsByWallet(wallet: WalletType)

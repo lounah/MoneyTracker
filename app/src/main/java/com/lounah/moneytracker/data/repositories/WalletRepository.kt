@@ -30,4 +30,8 @@ class WalletRepository @Inject constructor(private val dao: WalletDao) {
         dao.delete(wallet)
     }
 
+    fun updateWalletByTransaction(transaction: Transaction) {
+
+    }
+
 }
