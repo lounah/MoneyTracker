@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#6210b5</color>
     <color name="colorAccent">#ff007b</color>
     <color name="greyLight">#e0e0e0</color>
+    <color name="greyWarm">#eaeff1</color>
     <color name="grey">#757575</color>
     <color name="greyDark">#424242</color>
     <color name="gradientStart">#2b2b2b</color>
@@ -11,4 +12,8 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="settingsBackgroundColor">#81f9f8f8</color>
+    <color name="transactionTypeColor">#757575</color>
+    <color name="colorExpense">#d50000</color>
+    <color name="colorIncome">#00c853</color>
+    <color name="black_semi_transparent">#B2000000</color>
 </resources>

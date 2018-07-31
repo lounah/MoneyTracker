@@ -1,5 +1,7 @@
 package com.lounah.moneytracker.data.entities
 
 enum class TransactionType {
-    INCOME, EXPENSE
+    FOOD, CLOTHES, COMMUNAL_PAYMENTS, REST,
+    EDUCATION, HOME, FAMILY, AUTO, TREATMENT, SALARY, OTHER
 }
+

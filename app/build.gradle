@@ -19,16 +19,19 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            multiDexEnabled true
+            multiDexEnabled false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
-            minifyEnabled false
-            multiDexEnabled true
+            multiDexEnabled false
             useProguard false
         }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
     }
 }
 
@@ -55,6 +58,10 @@ ext {
 
 kapt {
     generateStubs = true
+}
+
+androidExtensions {
+    experimental = true
 }
 
 dependencies {
@@ -95,6 +102,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxJavaAndroidVersion"
 
+    // RxBinding
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+
     // LeakCanary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
@@ -103,6 +113,11 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
     implementation 'com.ncapdevi:frag-nav:2.4.0'
+    implementation 'org.fabiomsr:moneytextview:1.1.0'
+    implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
+    implementation 'info.hoang8f:android-segmented:1.0.6'
+    implementation 'com.getbase:floatingactionbutton:1.10.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
     // Tests
     testImplementation "junit:junit:$jUnitVersion"

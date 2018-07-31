@@ -5,10 +5,18 @@ import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.lounah.moneytracker.data.entities.Transaction
+import com.lounah.moneytracker.util.ResourcesSelector
 import com.lounah.wallettracker.R
+import org.fabiomsr.moneytextview.MoneyTextView
 
+/*
+    Вот здесь все совсем плохо -- типы транзакций вшиты и хранятся в enum'ax, которые сложно локализовать
+    Эту проблему я решу тем, что буду подгружать категории из БД
+    Пока что пришлось писать utility-класс @ResourcesSelector, и это ужасно
+ */
 
 class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHolder>() {
 
@@ -29,34 +37,62 @@ class TransactionsRVAdapter : RecyclerView.Adapter<TransactionsRVAdapter.ViewHol
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val date: TextView by lazy {
-            itemView.findViewById<TextView>(R.id.tv_action_date)
+            itemView.findViewById<TextView>(R.id.tv_date)
         }
-        private val actionType: TextView by lazy {
-            itemView.findViewById<TextView>(R.id.tv_action_type)
+
+        private val icon: ImageView by lazy {
+            itemView.findViewById<ImageView>(R.id.iv_currency_type)
         }
-        private val amount: TextView by lazy {
-            itemView.findViewById<TextView>(R.id.tv_amount)
+
+        private val time: TextView by lazy {
+            itemView.findViewById<TextView>(R.id.tv_time)
         }
         private val currency: TextView by lazy {
             itemView.findViewById<TextView>(R.id.tv_currency)
         }
+        private val transactionType: TextView by lazy {
+            itemView.findViewById<TextView>(R.id.tv_transaction_category)
+        }
+
+        private val description: TextView by lazy {
+            itemView.findViewById<TextView>(R.id.tv_description)
+        }
+
+        private val amount: MoneyTextView by lazy {
+            itemView.findViewById<MoneyTextView>(R.id.tv_amount)
+        }
 
         fun bind(item: Transaction) = with(itemView) {
-            date.text = DateFormat.format("MM/dd/yyyy hh:mm", item.date)
-            actionType.text = item.type.toString()
-            amount.text = item.amount.toString()
+            date.visibility = View.VISIBLE
+            if (adapterPosition == 0) {
+                date.text = DateFormat.format("dd/MM/yyyy", item.date)
+            } else {
+                if (item.date.day > transactions[adapterPosition - 1].date.day) {
+                    date.text = DateFormat.format("dd/MM/yyyy hh:mm", item.date)
+                } else {
+                    date.visibility = View.GONE
+                }
+            }
+            description.text = item.description
+            time.text = DateFormat.format("hh:mm", item.date)
+
+            transactionType.text = ResourcesSelector.fromTransactionTypeToString(item.type, itemView)
+
+            val iconImageResource = ResourcesSelector.fromTransactionTypeToDrawable(item.type)
+
+            icon.setImageResource(iconImageResource)
+
+            if (item.amount < 0) {
+                amount.setBaseColor(itemView.resources.getColor(R.color.colorExpense))
+                amount.setDecimalsColor(itemView.resources.getColor(R.color.colorExpense))
+            } else {
+                amount.setBaseColor(itemView.resources.getColor(R.color.colorIncome))
+                amount.setDecimalsColor(itemView.resources.getColor(R.color.colorIncome))
+            }
+            amount.amount = item.amount.toFloat()
+            amount.setSymbol("")
             currency.text = item.currency.toString()
         }
-    }
-
-    fun addTransaction(transaction: Transaction) {
-        transactions.add(transaction)
-        notifyDataSetChanged()
-    }
-
-    fun addTransactions(transactions: MutableList<Transaction>) {
-        transactions.addAll(transactions)
-        notifyDataSetChanged()
     }
 
     // TODO: USE DIFF UTIL

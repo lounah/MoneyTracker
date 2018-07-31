@@ -63,7 +63,7 @@
             android:layout_below="@id/tv_current_major_currency"
             android:background="@color/white"
             android:foreground="?attr/selectableItemBackground"
-            android:padding="16dp"
+            android:padding="8dp"
             android:text="RUB"
             android:textAlignment="textStart" />
 
