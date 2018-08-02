@@ -62,6 +62,7 @@
     <string name="new_income">Новый доход</string>
     <string name="new_expense">Новый расход</string>
 
+    <string name="graphics">Graphics</string>
     <string name="error_loading_data">Произошла ошибка при загрузке данных</string>
     <string name="dollar_sign">$</string>
     <string name="euro_sign">€</string>

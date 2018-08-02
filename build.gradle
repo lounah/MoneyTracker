@@ -1,26 +1,30 @@
+apply from: 'dependencies.gradle'
 
 buildscript {
-    ext.kotlin_version = '1.2.30'
+
+    ext {
+        ANDROID_PLUGIN_VERSION = '3.1.3'
+        KOTLIN_PLUGIN_VERSION = '1.2.60'
+        DEXCOUNT_PLUGIN_VERSION = '0.8.3'
+        pluginLibs = [
+                android : "com.android.tools.build:gradle:$ANDROID_PLUGIN_VERSION",
+                kotlin  : "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_PLUGIN_VERSION",
+                dexcount: "com.getkeepsafe.dexcount:dexcount-gradle-plugin:$DEXCOUNT_PLUGIN_VERSION",
+                kotlinx : "org.jetbrains.kotlin:kotlin-android-extensions:$KOTLIN_PLUGIN_VERSION"
+        ]
+    }
+
     repositories {
         google()
         jcenter()
     }
+
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
-    }
-}
-
-plugins {
-    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC8"
-}
-
-detekt {
-    version = "1.0.0.RC8"
-    defaultProfile {
-        input = file("src/main/kotlin")
-        filters = ".*/resources/.*,.*/build/.*"
+        classpath pluginLibs.android
+        classpath pluginLibs.kotlin
+        classpath pluginLibs.dexcount
+        classpath pluginLibs.kotlinx
     }
 }
 

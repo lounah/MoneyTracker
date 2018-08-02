@@ -11,7 +11,7 @@ class MoneyTrackerApplication : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        //installLeakCanary()
+        installLeakCanary()
         installTimber()
     }
 
@@ -19,8 +19,11 @@ class MoneyTrackerApplication : DaggerApplication() {
             = DaggerAppComponent.builder().application(this).build()
 
     private fun installLeakCanary() {
-        if (!LeakCanary.isInAnalyzerProcess(this))
-            LeakCanary.install(this)
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return
+        }
+        LeakCanary.install(this)
+
     }
 
     private fun installTimber() {
