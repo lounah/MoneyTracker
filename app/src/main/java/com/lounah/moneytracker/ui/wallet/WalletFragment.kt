@@ -17,6 +17,7 @@ import com.lounah.moneytracker.ui.common.BaseFragment
 import com.lounah.moneytracker.ui.wallet.addtransaction.AddTransactionFragment
 import com.lounah.moneytracker.util.ZoomOutPageTransformer
 import com.lounah.wallettracker.R
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_wallet.*
 import java.text.DecimalFormat
 import javax.inject.Inject
@@ -40,6 +41,11 @@ class WalletFragment : BaseFragment() {
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidSupportInjection.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

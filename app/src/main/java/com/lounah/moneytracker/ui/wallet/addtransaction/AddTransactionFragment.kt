@@ -10,6 +10,7 @@ import com.lounah.moneytracker.data.entities.WalletType
 import com.lounah.moneytracker.ui.MainActivity
 import com.lounah.moneytracker.ui.common.BaseFragment
 import com.lounah.wallettracker.R
+import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.BiFunction
@@ -53,6 +54,11 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
             args.putBoolean(INCOME_KEY, isIncome)
             arguments = args
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidSupportInjection.inject(this)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

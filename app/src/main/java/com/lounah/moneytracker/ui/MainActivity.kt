@@ -16,14 +16,22 @@ import com.lounah.moneytracker.ui.wallet.WalletFragment
 import com.lounah.wallettracker.R
 import com.ncapdevi.fragnav.FragNavController
 import com.ncapdevi.fragnav.FragNavTransactionOptions
-import dagger.android.support.DaggerAppCompatActivity
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import ru.popov.bodya.core.mvp.AppActivity
+import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity(),
+class MainActivity : AppActivity(), HasSupportFragmentInjector,
         NavigationView.OnNavigationItemSelectedListener,
         BaseFragment.Navigation,
         FragNavController.RootFragmentListener {
+
+    @Inject
+    lateinit var injector: DispatchingAndroidInjector<Fragment>
 
     private lateinit var toggle: ActionBarDrawerToggle
 
@@ -35,6 +43,7 @@ class MainActivity : DaggerAppCompatActivity(),
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initUI(savedInstanceState, supportFragmentManager)
@@ -113,6 +122,9 @@ class MainActivity : DaggerAppCompatActivity(),
         }
         return true
     }
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = injector
+
 
     fun onUpdateToolbarTitle(resId: Int) {
         toolbar.title = getString(resId)

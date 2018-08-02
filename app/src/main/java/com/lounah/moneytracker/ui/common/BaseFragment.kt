@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.os.Bundle
 import android.view.View
 
-abstract class BaseFragment : DaggerFragment() {
+abstract class BaseFragment: Fragment() {
 
     lateinit var mFragmentNavigator: Navigation
 

@@ -58,7 +58,8 @@ androidExtensions {
 }
 
 dependencies {
-
+    // modules
+    implementation project(':core')
     // support
     implementation libraries.supportAppCompat
     implementation libraries.supportDesign
