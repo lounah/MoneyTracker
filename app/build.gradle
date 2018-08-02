@@ -83,6 +83,8 @@ dependencies {
     implementation libraries.room
     implementation libraries.roomRx
     kapt libraries.roomProcessor
+    // navigation
+    implementation libraries.cicerone
     // network
     implementation libraries.retrofit
     implementation libraries.retrofitGsonConverter

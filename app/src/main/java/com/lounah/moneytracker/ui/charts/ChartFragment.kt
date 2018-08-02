@@ -1,29 +1,20 @@
 package com.lounah.moneytracker.ui.charts
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import com.lounah.moneytracker.ui.MainActivity
-import com.lounah.moneytracker.ui.common.BaseFragment
+import android.view.ViewGroup
 import com.lounah.wallettracker.R
+import ru.popov.bodya.core.mvp.AppFragment
 
-class ChartFragment : BaseFragment() {
-    override val layoutRes: Int
-        get() = R.layout.fragment_charts
+class ChartFragment : AppFragment() {
 
-    override val TAG: String
-        get() = "CHART_FRAGMENT"
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_charts, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initUI()
-    }
-
-    private fun initUI() {
-        setUpToolbarTitle(R.string.statistics)
-    }
-
-    override fun setUpToolbarTitle(resId: Int) {
-        (activity as MainActivity).onUpdateToolbarTitle(resId)
     }
 
 }

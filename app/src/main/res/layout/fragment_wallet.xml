@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout android:id="@+id/fragment_wallet_cl"
+                                                 xmlns:android="http://schemas.android.com/apk/res/android"
                                                  xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 android:id="@+id/fragment_wallet_cl"
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent">
 
@@ -9,35 +9,37 @@
         android:id="@+id/information_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/information_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="@color/colorPrimary"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:title="@string/wallet"/>
+
+                <info.hoang8f.android.segmented.SegmentedGroup
                     android:id="@+id/rg_currencies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/toolbar"
                     android:layout_margin="16dp"
                     android:orientation="horizontal"
                     android:weightSum="3"
-                    segmentedgroup:sc_border_width="2dp"
-                    segmentedgroup:sc_checked_text_color="@color/black"
-                    segmentedgroup:sc_corner_radius="2dp"
-                    segmentedgroup:sc_tint_color="@color/white">
+                    app:sc_border_width="2dp"
+                    app:sc_checked_text_color="@color/white"
+                    app:sc_corner_radius="4dp"
+                    app:sc_tint_color="@color/black">
 
                     <RadioButton
                         android:id="@+id/btn_rub"
@@ -45,7 +47,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/rub" />
+                        android:text="@string/rub"/>
 
                     <RadioButton
                         android:id="@+id/btn_eur"
@@ -53,7 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/eur" />
+                        android:text="@string/eur"/>
 
                     <RadioButton
                         android:id="@+id/btn_usd"
@@ -61,7 +63,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/usd" />
+                        android:text="@string/usd"/>
 
                 </info.hoang8f.android.segmented.SegmentedGroup>
 
@@ -69,15 +71,13 @@
                     android:id="@+id/vp_amount"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
-                    android:layout_below="@id/rg_currencies"
-                    android:background="@color/colorPrimary" />
+                    android:layout_below="@id/rg_currencies"/>
 
                 <LinearLayout
                     android:id="@+id/ll_cards"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/vp_amount"
-                    android:background="@color/white"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
@@ -100,7 +100,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="top|left"
                             android:layout_margin="16dp"
-                            android:text="@string/dollar_sign" />
+                            android:text="@string/dollar_sign"/>
 
                         <TextView
                             android:id="@+id/tv_currency_sign_bottom"
@@ -109,7 +109,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|bottom"
                             android:layout_margin="16dp"
-                            android:text="@string/euro_sign" />
+                            android:text="@string/euro_sign"/>
 
                         <TextView
                             android:id="@+id/currency_top_exchange_rate"
@@ -118,7 +118,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end|top"
                             android:layout_margin="16dp"
-                            android:text="@string/dash" />
+                            android:text="@string/dash"/>
 
                         <TextView
                             android:id="@+id/currency_bottom_exchange_rate"
@@ -127,23 +127,15 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end|bottom"
                             android:layout_margin="16dp"
-                            android:text="@string/dash" />
+                            android:text="@string/dash"/>
 
-                        <FrameLayout
-                            android:id="@+id/pb_placeholder"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/white">
-
-                            <ProgressBar
-                                android:id="@+id/progressBar"
-                                style="?android:attr/progressBarStyle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center" />
-
-                        </FrameLayout>
-
+                        <ProgressBar
+                            android:id="@+id/progressBar"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:visibility="gone"/>
                     </android.support.v7.widget.CardView>
 
                     <LinearLayout
@@ -172,7 +164,7 @@
                                 android:text="@string/incomes"
                                 android:textAlignment="center"
                                 android:textAllCaps="true"
-                                android:textColor="@color/colorIncome" />
+                                android:textColor="@color/colorIncome"/>
 
                             <org.fabiomsr.moneytextview.MoneyTextView
                                 android:id="@+id/tv_incomes"
@@ -185,7 +177,7 @@
                                 app:decimalGravity="top"
                                 app:decimalSeparator="."
                                 app:gravity="bottom"
-                                app:symbol="" />
+                                app:symbol=""/>
 
                         </android.support.v7.widget.CardView>
 
@@ -209,7 +201,7 @@
                                 android:text="@string/expenses"
                                 android:textAlignment="center"
                                 android:textAllCaps="true"
-                                android:textColor="@color/colorExpense" />
+                                android:textColor="@color/colorExpense"/>
 
                             <org.fabiomsr.moneytextview.MoneyTextView
                                 android:id="@+id/tv_expenses"
@@ -223,7 +215,7 @@
                                 app:decimalGravity="top"
                                 app:decimalSeparator="."
                                 app:gravity="bottom"
-                                app:symbol="" />
+                                app:symbol=""/>
 
                         </android.support.v7.widget.CardView>
 
@@ -256,19 +248,19 @@
                 android:id="@+id/ti_all_transactions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/all_transactions" />
+                android:text="@string/all_transactions"/>
 
             <android.support.design.widget.TabItem
                 android:id="@+id/ti_incomes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/incomes" />
+                android:text="@string/incomes"/>
 
             <android.support.design.widget.TabItem
                 android:id="@+id/ti_expenses"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/expenses" />
+                android:text="@string/expenses"/>
 
         </android.support.design.widget.TabLayout>
 
@@ -278,7 +270,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/tl_transaction_types"
             android:background="@color/settingsBackgroundColor"
-            android:clipToPadding="false" />
+            android:clipToPadding="false"/>
     </RelativeLayout>
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
@@ -301,7 +293,7 @@
             app:fab_colorNormal="@color/colorIncome"
             app:fab_icon="@drawable/ic_income"
             app:fab_size="mini"
-            app:fab_title="@string/new_income" />
+            app:fab_title="@string/new_income"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_new_expense"
@@ -311,7 +303,7 @@
             app:fab_colorNormal="@color/colorExpense"
             app:fab_icon="@drawable/ic_expense"
             app:fab_size="mini"
-            app:fab_title="@string/new_expense" />
+            app:fab_title="@string/new_expense"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

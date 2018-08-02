@@ -5,17 +5,22 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
-import dagger.android.support.AndroidSupportInjectionModule
 import ru.popov.bodya.app.MoneyTrackerApplication
 import ru.popov.bodya.core.dagger.ApplicationContext
-import ru.popov.bodya.di.account.MainActivityModule
+import ru.popov.bodya.di.common.modules.ActivitiesBuildersModule
 import ru.popov.bodya.di.common.modules.AppModule
+import ru.popov.bodya.di.common.modules.NavigationModule
+import ru.popov.bodya.di.common.modules.RxModule
+import javax.inject.Singleton
 
+@Singleton
 @Component(modules = [
+    AndroidInjectionModule::class,
     AppModule::class,
-    MainActivityModule::class,
-    AndroidSupportInjectionModule::class,
-    AndroidInjectionModule::class])
+    ActivitiesBuildersModule::class,
+    RxModule::class,
+    NavigationModule::class
+   ])
 interface AppComponent {
     @Component.Builder
     interface Builder {
@@ -29,5 +34,5 @@ interface AppComponent {
         fun build(): AppComponent
     }
 
-    fun inject(howMoneyApp: MoneyTrackerApplication)
+    fun inject(moneyTrackerApplication: MoneyTrackerApplication)
 }

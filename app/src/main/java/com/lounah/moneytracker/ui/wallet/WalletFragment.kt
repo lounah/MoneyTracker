@@ -7,29 +7,24 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import com.lounah.moneytracker.data.entities.Status
 import com.lounah.moneytracker.data.entities.Transaction
 import com.lounah.moneytracker.data.entities.Wallet
-import com.lounah.moneytracker.ui.MainActivity
-import com.lounah.moneytracker.ui.common.BaseFragment
-import com.lounah.moneytracker.ui.wallet.addtransaction.AddTransactionFragment
 import com.lounah.moneytracker.util.ZoomOutPageTransformer
 import com.lounah.wallettracker.R
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_wallet.*
+import ru.popov.bodya.core.mvp.AppFragment
+import ru.popov.bodya.presentation.common.Screens.ADD_NEW_TRANSACTION_SCREEN
+import ru.terrakok.cicerone.Router
 import java.text.DecimalFormat
 import javax.inject.Inject
 
-
-class WalletFragment : BaseFragment() {
-
-    override val layoutRes: Int
-        get() = R.layout.fragment_wallet
-
-    override val TAG: String
-        get() = "WALLET_FRAGMENT"
+class WalletFragment : AppFragment() {
 
     private val formatter = DecimalFormat("#0.00")
 
@@ -38,13 +33,20 @@ class WalletFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModel: WalletViewModel
-
+    @Inject
+    lateinit var router: Router
     @Inject
     lateinit var factory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val parentView = inflater.inflate(R.layout.fragment_wallet, container, false)
+        setHasOptionsMenu(true)
+        return parentView
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -55,7 +57,6 @@ class WalletFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpToolbarTitle(R.string.wallet)
         initUI()
     }
 
@@ -87,17 +88,17 @@ class WalletFragment : BaseFragment() {
     }
 
     private fun addNewIncome() {
-        mFragmentNavigator.showDialogFragment(AddTransactionFragment.newInstance(true))
+        router.navigateTo(ADD_NEW_TRANSACTION_SCREEN, true)
     }
 
     private fun addNewExpense() {
-        mFragmentNavigator.showDialogFragment(AddTransactionFragment.newInstance(false))
+        router.navigateTo(ADD_NEW_TRANSACTION_SCREEN, false)
     }
 
     private fun initCurrenciesRadioGroup() {
         rg_currencies.check(R.id.btn_rub)
         rg_currencies.setOnCheckedChangeListener { _, checkedId ->
-            when(checkedId) {
+            when (checkedId) {
 
             }
         }
@@ -125,7 +126,7 @@ class WalletFragment : BaseFragment() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                when(tab?.position) {
+                when (tab?.position) {
                     0 -> viewModel.refreshCurrentBalance()
                     1 -> viewModel.getIncomeTransactions()
                     2 -> viewModel.getExpenseTransactions()
@@ -210,10 +211,6 @@ class WalletFragment : BaseFragment() {
         viewModel.transactions.removeObservers(this)
     }
 
-    override fun setUpToolbarTitle(resId: Int) {
-        (activity as MainActivity).onUpdateToolbarTitle(resId)
-    }
-
     private fun processErrorState() {
         hideProgressBar()
         showToast(R.string.error_loading_data)
@@ -221,7 +218,6 @@ class WalletFragment : BaseFragment() {
 
     private fun hideProgressBar() {
         progressBar.visibility = View.GONE
-        pb_placeholder.visibility = View.GONE
     }
 
     private fun processSuccessFirstExchangeRate(rate: Double?) {
@@ -239,7 +235,6 @@ class WalletFragment : BaseFragment() {
     }
 
     private fun showProgressBar() {
-        pb_placeholder.visibility = View.VISIBLE
         progressBar.visibility = View.VISIBLE
     }
 

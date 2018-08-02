@@ -1,20 +1,22 @@
 package com.lounah.moneytracker.ui.wallet.addtransaction
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.lounah.moneytracker.data.entities.Currency
 import com.lounah.moneytracker.data.entities.Transaction
 import com.lounah.moneytracker.data.entities.TransactionType
 import com.lounah.moneytracker.data.entities.WalletType
-import com.lounah.moneytracker.ui.MainActivity
-import com.lounah.moneytracker.ui.common.BaseFragment
 import com.lounah.wallettracker.R
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.fragment_add_transaction.*
+import ru.popov.bodya.core.mvp.AppFragment
 import java.util.*
 import javax.inject.Inject
 
@@ -25,13 +27,7 @@ import javax.inject.Inject
     Посмотрите на UI этого фрагмента в приложении
  */
 
-class AddTransactionFragment : BaseFragment(), AddTransactionView {
-
-    override val layoutRes: Int
-        get() = R.layout.fragment_add_transaction
-
-    override val TAG: String
-        get() = "ADD_TRANSACTION_FRAGMENT"
+class AddTransactionFragment : AppFragment(), AddTransactionView {
 
     @Inject
     lateinit var presenter: AddTransactionPresenter
@@ -61,6 +57,10 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
         super.onCreate(savedInstanceState)
     }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_add_transaction, container, false)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val titleRes = when (arguments?.getBoolean(INCOME_KEY)) {
@@ -74,7 +74,6 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
             }
             else -> R.string.create_transaction
         }
-        setUpToolbarTitle(titleRes)
         initUI()
     }
 
@@ -150,12 +149,8 @@ class AddTransactionFragment : BaseFragment(), AddTransactionView {
         presenter.onDetach()
     }
 
-    override fun setUpToolbarTitle(resId: Int) {
-        (activity as MainActivity).onUpdateToolbarTitle(resId)
-    }
-
     override fun onTransactionCreated() {
-        (activity as MainActivity).onBackPressed()
+       Toast.makeText(activity, "onTransactionCreated", Toast.LENGTH_LONG).show()
     }
 
     interface OnItemSelectedCallback {
