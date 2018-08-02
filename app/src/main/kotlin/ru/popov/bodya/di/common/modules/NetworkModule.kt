@@ -1,4 +1,4 @@
-package com.lounah.moneytracker.di.modules
+package ru.popov.bodya.di.common.modules
 
 import com.lounah.moneytracker.data.datasource.remote.CurrencyApi
 import dagger.Module

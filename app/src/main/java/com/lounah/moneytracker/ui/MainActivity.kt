@@ -25,10 +25,7 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import ru.popov.bodya.core.mvp.AppActivity
 import javax.inject.Inject
 
-class MainActivity : AppActivity(), HasSupportFragmentInjector,
-        NavigationView.OnNavigationItemSelectedListener,
-        BaseFragment.Navigation,
-        FragNavController.RootFragmentListener {
+class MainActivity : AppActivity(), HasSupportFragmentInjector, NavigationView.OnNavigationItemSelectedListener, BaseFragment.Navigation, FragNavController.RootFragmentListener {
 
     @Inject
     lateinit var injector: DispatchingAndroidInjector<Fragment>

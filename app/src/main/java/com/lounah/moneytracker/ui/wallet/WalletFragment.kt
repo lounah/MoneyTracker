@@ -107,7 +107,6 @@ class WalletFragment : BaseFragment() {
         vp_amount.setPageTransformer(true, ZoomOutPageTransformer())
         pagerAdapter = BalanceVPAdapter()
         vp_amount.adapter = pagerAdapter
-        tl_dots.setupWithViewPager(vp_amount, true)
     }
 
     private fun initTransactionsList() {

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_wallet_cl"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:id="@+id/fragment_wallet_cl"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/information_app_bar"
@@ -231,15 +230,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tl_dots"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_below="@id/ll_cards"
-                    android:background="@color/colorPrimary"
-                    app:tabGravity="center"
-                    app:tabIndicatorHeight="0dp" />
 
             </RelativeLayout>
         </android.support.design.widget.CollapsingToolbarLayout>

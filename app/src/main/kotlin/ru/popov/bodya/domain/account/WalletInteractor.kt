@@ -1,7 +1,8 @@
-package com.lounah.moneytracker.domain.interactors
+package ru.popov.bodya.domain.account
 
-import com.lounah.moneytracker.data.entities.*
 import com.lounah.moneytracker.data.entities.Currency
+import com.lounah.moneytracker.data.entities.Transaction
+import com.lounah.moneytracker.data.entities.WalletType
 import com.lounah.moneytracker.data.repositories.CurrencyRepository
 import com.lounah.moneytracker.data.repositories.TransactionsRepository
 import com.lounah.moneytracker.data.repositories.WalletRepository

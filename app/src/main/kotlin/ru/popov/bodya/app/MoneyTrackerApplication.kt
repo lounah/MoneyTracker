@@ -7,7 +7,7 @@ import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import ru.popov.bodya.di.common.AppInjector
+import ru.popov.bodya.di.common.app.AppInjector
 import timber.log.Timber
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package ru.popov.bodya.di.common
+package ru.popov.bodya.di.common.app
 
 import ru.popov.bodya.app.MoneyTrackerApplication
 
@@ -9,8 +9,7 @@ object AppInjector {
 
     fun init(moneyTrackerApp: MoneyTrackerApplication) {
 
-        DaggerAppComponent
-                .builder()
+        DaggerAppComponent.builder()
                 .application(moneyTrackerApp)
                 .appContext(moneyTrackerApp)
                 .build()

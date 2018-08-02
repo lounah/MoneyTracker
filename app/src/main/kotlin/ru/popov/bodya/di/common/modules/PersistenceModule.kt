@@ -1,4 +1,4 @@
-package com.lounah.moneytracker.di.modules
+package ru.popov.bodya.di.common.modules
 
 import android.app.Application
 import android.arch.persistence.room.Room

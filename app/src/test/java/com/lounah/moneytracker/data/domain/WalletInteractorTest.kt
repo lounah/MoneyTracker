@@ -8,7 +8,6 @@ import com.lounah.moneytracker.data.datasource.remote.CurrencyApi
 import com.lounah.moneytracker.data.repositories.CurrencyRepository
 import com.lounah.moneytracker.data.repositories.TransactionsRepository
 import com.lounah.moneytracker.data.repositories.WalletRepository
-import com.lounah.moneytracker.domain.interactors.WalletInteractor
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -16,9 +15,9 @@ import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.ArgumentMatchers
-import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.*
+import ru.popov.bodya.domain.account.WalletInteractor
 
 @RunWith(JUnit4::class)
 class WalletInteractorTest {

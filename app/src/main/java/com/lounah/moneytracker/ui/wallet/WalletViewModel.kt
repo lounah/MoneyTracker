@@ -7,15 +7,14 @@ import android.arch.lifecycle.ViewModel
 import com.lounah.moneytracker.data.entities.Resource
 import com.lounah.moneytracker.data.entities.Transaction
 import com.lounah.moneytracker.data.entities.Wallet
-import com.lounah.moneytracker.domain.interactors.WalletInteractor
 import com.lounah.moneytracker.util.AbsentLiveData
 import io.reactivex.disposables.CompositeDisposable
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import ru.popov.bodya.domain.account.WalletInteractor
 import javax.inject.Inject
-
 
 class WalletViewModel @Inject constructor(private val interactor: WalletInteractor) : ViewModel() {
 

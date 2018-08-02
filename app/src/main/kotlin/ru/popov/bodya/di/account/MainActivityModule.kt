@@ -1,4 +1,4 @@
-package com.lounah.moneytracker.di.modules
+package ru.popov.bodya.di.account
 
 import com.lounah.moneytracker.ui.MainActivity
 import dagger.Module

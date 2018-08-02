@@ -1,11 +1,11 @@
-package com.lounah.moneytracker.di.modules
+package ru.popov.bodya.di.account
 
 import com.lounah.moneytracker.ui.charts.ChartFragment
 import com.lounah.moneytracker.ui.settings.AboutFragment
 import com.lounah.moneytracker.ui.settings.SettingsFragment
-import com.lounah.moneytracker.ui.wallet.addtransaction.AddTransactionFragment
 import com.lounah.moneytracker.ui.wallet.WalletFragment
 import com.lounah.moneytracker.ui.wallet.WalletFragmentModule
+import com.lounah.moneytracker.ui.wallet.addtransaction.AddTransactionFragment
 import com.lounah.moneytracker.ui.wallet.addtransaction.AddTransactionModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

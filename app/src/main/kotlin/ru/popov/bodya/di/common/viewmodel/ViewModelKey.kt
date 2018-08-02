@@ -1,4 +1,4 @@
-package com.lounah.moneytracker.di
+package ru.popov.bodya.di.common.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import dagger.MapKey

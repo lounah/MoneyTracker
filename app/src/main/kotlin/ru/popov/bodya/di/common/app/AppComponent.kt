@@ -1,15 +1,15 @@
-package ru.popov.bodya.di.common
+package ru.popov.bodya.di.common.app
 
 import android.app.Application
 import android.content.Context
-import com.lounah.moneytracker.di.AppModule
-import com.lounah.moneytracker.di.modules.MainActivityModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.support.AndroidSupportInjectionModule
 import ru.popov.bodya.app.MoneyTrackerApplication
 import ru.popov.bodya.core.dagger.ApplicationContext
+import ru.popov.bodya.di.account.MainActivityModule
+import ru.popov.bodya.di.common.modules.AppModule
 
 @Component(modules = [
     AppModule::class,
