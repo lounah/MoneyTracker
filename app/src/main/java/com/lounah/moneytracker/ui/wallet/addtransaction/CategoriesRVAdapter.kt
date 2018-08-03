@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.lounah.moneytracker.data.entities.TransactionType
 import com.lounah.moneytracker.util.ResourcesSelector
 import com.lounah.wallettracker.R
+import ru.popov.bodya.presentation.addtransaction.AddTransactionFragment
 
 /*
     За адаптер мне также стыдно -- попытался сделать selector в ресайклере

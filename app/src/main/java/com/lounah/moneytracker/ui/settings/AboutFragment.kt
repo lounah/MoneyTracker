@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.lounah.wallettracker.BuildConfig
 import com.lounah.wallettracker.R
 import kotlinx.android.synthetic.main.fragment_about_app.*
-import ru.popov.bodya.core.mvp.AppFragment
+import ru.popov.bodya.core.mvwhatever.AppFragment
 
 class AboutFragment : AppFragment() {
 

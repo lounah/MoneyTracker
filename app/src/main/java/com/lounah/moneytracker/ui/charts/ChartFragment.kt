@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lounah.wallettracker.R
-import ru.popov.bodya.core.mvp.AppFragment
+import ru.popov.bodya.core.mvwhatever.AppFragment
 
 class ChartFragment : AppFragment() {
 

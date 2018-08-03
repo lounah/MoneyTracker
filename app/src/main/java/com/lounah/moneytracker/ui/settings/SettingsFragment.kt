@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.lounah.wallettracker.R
 import kotlinx.android.synthetic.main.fragment_settings.*
-import ru.popov.bodya.core.mvp.AppFragment
+import ru.popov.bodya.core.mvwhatever.AppFragment
 
 
 class SettingsFragment : AppFragment() {

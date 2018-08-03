@@ -8,13 +8,13 @@ import android.widget.Toast
 import com.lounah.moneytracker.ui.settings.AboutFragment
 import com.lounah.moneytracker.ui.settings.SettingsFragment
 import com.lounah.moneytracker.ui.wallet.WalletFragment
-import com.lounah.moneytracker.ui.wallet.addtransaction.AddTransactionFragment
 import com.lounah.wallettracker.R
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
-import ru.popov.bodya.core.mvp.AppActivity
+import ru.popov.bodya.core.mvwhatever.AppActivity
+import ru.popov.bodya.presentation.addtransaction.AddTransactionFragment
 import ru.popov.bodya.presentation.common.Screens.ABOUT_SCREEN
 import ru.popov.bodya.presentation.common.Screens.ADD_NEW_TRANSACTION_SCREEN
 import ru.popov.bodya.presentation.common.Screens.SETTINGS_SCREEN

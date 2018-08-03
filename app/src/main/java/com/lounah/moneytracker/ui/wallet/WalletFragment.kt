@@ -17,7 +17,7 @@ import com.lounah.moneytracker.util.ZoomOutPageTransformer
 import com.lounah.wallettracker.R
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_wallet.*
-import ru.popov.bodya.core.mvp.AppFragment
+import ru.popov.bodya.core.mvwhatever.AppFragment
 import ru.popov.bodya.presentation.common.Screens.ADD_NEW_TRANSACTION_SCREEN
 import ru.popov.bodya.presentation.transactions.TransactionsRVAdapter
 import ru.terrakok.cicerone.Router
@@ -62,7 +62,7 @@ class WalletFragment : AppFragment() {
     override fun onStart() {
         super.onStart()
         subscribeToViewModel()
-        viewModel.refreshCurrentBalance()
+//        viewModel.refreshCurrentBalance()
     }
 
     override fun onResume() {
@@ -84,8 +84,8 @@ class WalletFragment : AppFragment() {
     }
 
     private fun fetchFavouritesExchangeRates() {
-        viewModel.fetchFirstFieldExchangeRate("USD", "RUB")
-        viewModel.fetchSecondFieldExchangeRate("EUR", "RUB")
+        viewModel.fetchFirstFieldExchangeRate()
+        viewModel.fetchSecondFieldExchangeRate()
     }
 
     private fun initFab() {
@@ -133,23 +133,22 @@ class WalletFragment : AppFragment() {
                 }
             }
         })
-        viewModel.refreshCurrentBalance()
     }
 
     private fun initCurrencies() {}
 
     private fun subscribeToViewModel() {
-        viewModel.currentBalance.observe(this, Observer { response ->
-            when (response?.status) {
-                Status.SUCCESS -> processSuccessBalanceResponse(response.data!!)
-                Status.LOADING -> processLoadingState()
-                Status.ERROR -> processErrorState()
-            }
-        })
+//        viewModel.currentBalance.observe(this, Observer { response ->
+//            when (response?.status) {
+//                Status.SUCCESS -> processSuccessBalanceResponse(response.data!!)
+//                Status.LOADING -> processLoadingState()
+//                Status.ERROR -> processErrorState()
+//            }
+//        })
 
-        viewModel.transactions.observe(this, Observer { response ->
-            response?.apply { processSuccessTransactionsResponse(this) }
-        })
+//        viewModel.transactions.observe(this, Observer { response ->
+//            response?.apply { processSuccessTransactionsResponse(this) }
+//        })
 
         viewModel.firstFieldExchangeRate.observe(this, Observer { response ->
             when (response?.status) {
@@ -171,8 +170,8 @@ class WalletFragment : AppFragment() {
     private fun removeObservers() {
         viewModel.firstFieldExchangeRate.removeObservers(this)
         viewModel.secondFieldExchangeRate.removeObservers(this)
-        viewModel.currentBalance.removeObservers(this)
-        viewModel.transactions.removeObservers(this)
+//        viewModel.currentBalance.removeObservers(this)
+//        viewModel.transactions.removeObservers(this)
     }
 
     private fun processErrorState() {

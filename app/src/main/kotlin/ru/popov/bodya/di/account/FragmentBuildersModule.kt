@@ -4,15 +4,13 @@ import com.lounah.moneytracker.ui.charts.ChartFragment
 import com.lounah.moneytracker.ui.settings.AboutFragment
 import com.lounah.moneytracker.ui.settings.SettingsFragment
 import com.lounah.moneytracker.ui.wallet.WalletFragment
-import com.lounah.moneytracker.ui.wallet.addtransaction.AddTransactionFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import ru.popov.bodya.di.addtransaction.AddTransactionModule
-import ru.popov.bodya.di.wallet.WalletFragmentModule
+import ru.popov.bodya.presentation.addtransaction.AddTransactionFragment
 
 @Module
 abstract class FragmentBuildersModule {
-    @ContributesAndroidInjector(modules = [WalletFragmentModule::class])
+    @ContributesAndroidInjector
     abstract fun contributeWalletFragment(): WalletFragment
 
     @ContributesAndroidInjector
@@ -24,6 +22,6 @@ abstract class FragmentBuildersModule {
     @ContributesAndroidInjector
     abstract fun contributeChartFragment(): ChartFragment
 
-    @ContributesAndroidInjector(modules = [AddTransactionModule::class])
+    @ContributesAndroidInjector
     abstract fun contributeAddTransactionFragment(): AddTransactionFragment
 }
