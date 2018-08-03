@@ -1,5 +1,6 @@
-package com.lounah.moneytracker.ui.wallet.addtransaction
+package ru.popov.bodya.di.addtransaction
 
+import com.lounah.moneytracker.ui.wallet.addtransaction.AddTransactionPresenter
 import dagger.Module
 import dagger.Provides
 import ru.popov.bodya.domain.account.WalletInteractor

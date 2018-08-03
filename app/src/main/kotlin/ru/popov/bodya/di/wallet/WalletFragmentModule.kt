@@ -1,4 +1,4 @@
-package com.lounah.moneytracker.ui.wallet
+package ru.popov.bodya.di.wallet
 
 import com.lounah.moneytracker.data.repositories.CurrencyRepository
 import com.lounah.moneytracker.data.repositories.TransactionsRepository

@@ -7,28 +7,13 @@
     android:background="@color/white"
     tools:layout_height="400dp">
 
-    <TextView
-        android:id="@+id/tv_date"
-        style="@style/TextStyle.Small"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/greyWarm"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:textAlignment="center"
-        android:textColor="@color/greyDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/iv_currency_type"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_time"
@@ -36,8 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/iv_currency_type"
-        app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+        app:layout_constraintStart_toEndOf="@+id/iv_currency_type" />
 
     <TextView
         style="@style/TextStyle.Small"
@@ -47,8 +31,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:textAlignment="viewEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/tv_transaction_category"
@@ -103,7 +86,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toStartOf="@+id/tv_currency"
-        app:layout_constraintStart_toEndOf="@+id/tv_time"
-        app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+        app:layout_constraintStart_toEndOf="@+id/tv_time" />
 
 </android.support.constraint.ConstraintLayout>

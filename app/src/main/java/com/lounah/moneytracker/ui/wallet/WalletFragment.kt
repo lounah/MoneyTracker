@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -20,16 +19,12 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_wallet.*
 import ru.popov.bodya.core.mvp.AppFragment
 import ru.popov.bodya.presentation.common.Screens.ADD_NEW_TRANSACTION_SCREEN
+import ru.popov.bodya.presentation.transactions.TransactionsRVAdapter
 import ru.terrakok.cicerone.Router
 import java.text.DecimalFormat
 import javax.inject.Inject
 
 class WalletFragment : AppFragment() {
-
-    private val formatter = DecimalFormat("#0.00")
-
-    private lateinit var pagerAdapter: BalanceVPAdapter
-    private lateinit var transactionsAdapter: TransactionsRVAdapter
 
     @Inject
     lateinit var viewModel: WalletViewModel
@@ -37,6 +32,10 @@ class WalletFragment : AppFragment() {
     lateinit var router: Router
     @Inject
     lateinit var factory: ViewModelProvider.Factory
+
+    private val formatter = DecimalFormat("#0.00")
+    private lateinit var pagerAdapter: BalanceVPAdapter
+    private lateinit var transactionsAdapter: TransactionsRVAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -49,15 +48,21 @@ class WalletFragment : AppFragment() {
         return parentView
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUI()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, factory).get(WalletViewModel::class.java)
         fetchFavouritesExchangeRates()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initUI()
+    override fun onStart() {
+        super.onStart()
+        subscribeToViewModel()
+        viewModel.refreshCurrentBalance()
     }
 
     override fun onResume() {
@@ -65,13 +70,9 @@ class WalletFragment : AppFragment() {
         fab_add.collapse()
     }
 
-    // fav exchange rates будут браться из sharedPrefs, а туда заноситься из настроек
-    // после ПР реализую это, и подгружать буду в Map, а не в отдельные поля
-    // пока что это ужасно
-    // смотри UI -- карточка с текущими курсами валют
-    private fun fetchFavouritesExchangeRates() {
-        viewModel.fetchFirstFieldExchangeRate("USD", "RUB")
-        viewModel.fetchSecondFieldExchangeRate("EUR", "RUB")
+    override fun onStop() {
+        super.onStop()
+        removeObservers()
     }
 
     private fun initUI() {
@@ -80,6 +81,11 @@ class WalletFragment : AppFragment() {
         initWalletViewPager()
         initTransactionsList()
         initCurrencies()
+    }
+
+    private fun fetchFavouritesExchangeRates() {
+        viewModel.fetchFirstFieldExchangeRate("USD", "RUB")
+        viewModel.fetchSecondFieldExchangeRate("EUR", "RUB")
     }
 
     private fun initFab() {
@@ -113,28 +119,7 @@ class WalletFragment : AppFragment() {
     private fun initTransactionsList() {
         transactionsAdapter = TransactionsRVAdapter()
         rv_actions.adapter = transactionsAdapter
-        val linearLayoutManager = LinearLayoutManager(context)
-        rv_actions.layoutManager = linearLayoutManager
-
-        tl_transaction_types.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                when (tab?.position) {
-                    0 -> viewModel.refreshCurrentBalance()
-                    1 -> viewModel.getIncomeTransactions()
-                    2 -> viewModel.getExpenseTransactions()
-                }
-            }
-
-        })
-
+        rv_actions.layoutManager = LinearLayoutManager(context)
         rv_actions.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 if (dy > 20 && fab_add.visibility == View.VISIBLE) {
@@ -148,15 +133,10 @@ class WalletFragment : AppFragment() {
                 }
             }
         })
+        viewModel.refreshCurrentBalance()
     }
 
     private fun initCurrencies() {}
-
-    override fun onStart() {
-        super.onStart()
-        subscribeToViewModel()
-        viewModel.refreshCurrentBalance()
-    }
 
     private fun subscribeToViewModel() {
         viewModel.currentBalance.observe(this, Observer { response ->
@@ -168,40 +148,24 @@ class WalletFragment : AppFragment() {
         })
 
         viewModel.transactions.observe(this, Observer { response ->
-            if (tl_transaction_types.selectedTabPosition == 0)
-                processSuccessTransactionsResponse(response!!)
-        })
-
-        viewModel.incomeTransactions.observe(this, Observer { response ->
-            if (tl_transaction_types.selectedTabPosition == 1)
-                processSuccessTransactionsResponse(response!!)
-        })
-
-        viewModel.expenseTransactions.observe(this, Observer { response ->
-            if (tl_transaction_types.selectedTabPosition == 2)
-                processSuccessTransactionsResponse(response!!)
+            response?.apply { processSuccessTransactionsResponse(this) }
         })
 
         viewModel.firstFieldExchangeRate.observe(this, Observer { response ->
-            when (response!!.status) {
+            when (response?.status) {
                 Status.ERROR -> processErrorState()
-                Status.SUCCESS -> processSuccessFirstExchangeRate(response.data!!)
+                Status.SUCCESS -> processSuccessFirstExchangeRate(response.data)
                 Status.LOADING -> processLoadingState()
             }
         })
 
         viewModel.secondFieldExchangeRate.observe(this, Observer { response ->
-            when (response!!.status) {
+            when (response?.status) {
                 Status.ERROR -> processErrorState()
-                Status.SUCCESS -> processSuccessSecondExchangeRate(response.data!!)
+                Status.SUCCESS -> processSuccessSecondExchangeRate(response.data)
                 Status.LOADING -> processLoadingState()
             }
         })
-    }
-
-    override fun onStop() {
-        super.onStop()
-        removeObservers()
     }
 
     private fun removeObservers() {
