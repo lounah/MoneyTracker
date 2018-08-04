@@ -3,8 +3,8 @@ package ru.popov.bodya.presentation.transactions
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.lounah.moneytracker.data.entities.Transaction
 import com.lounah.wallettracker.R
+import ru.popov.bodya.domain.transactions.models.Transaction
 
 class TransactionsRVAdapter : RecyclerView.Adapter<TransactionViewHolder>() {
 
@@ -23,11 +23,10 @@ class TransactionsRVAdapter : RecyclerView.Adapter<TransactionViewHolder>() {
     }
 
     // TODO: USE DIFF UTIL
-    fun updateDataSet(transactions: List<Transaction>?) {
-        if (transactions != null) {
-            this.transactions.clear()
-            this.transactions.addAll(transactions)
-            notifyDataSetChanged()
-        }
+    fun updateDataSet(transactionList: List<Transaction>) {
+        this.transactions.clear()
+        transactions.addAll(transactionList)
+        notifyDataSetChanged()
     }
 }
+

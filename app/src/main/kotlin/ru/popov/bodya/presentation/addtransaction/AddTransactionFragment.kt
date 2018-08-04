@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
-import com.lounah.moneytracker.data.entities.Currency
-import com.lounah.moneytracker.data.entities.Transaction
-import com.lounah.moneytracker.data.entities.TransactionType
-import com.lounah.moneytracker.data.entities.WalletType
+import ru.popov.bodya.domain.currency.model.Currency
+import ru.popov.bodya.data.database.transactions.entities.TransactionEntity
+import ru.popov.bodya.domain.transactions.models.ExpenseCategory
+import ru.popov.bodya.domain.transactions.models.WalletType
 import com.lounah.moneytracker.ui.wallet.addtransaction.AddTransactionView
 import com.lounah.moneytracker.ui.wallet.addtransaction.CategoriesRVAdapter
 import com.lounah.wallettracker.R
@@ -19,11 +19,12 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.fragment_add_transaction.*
 import ru.popov.bodya.core.mvwhatever.AppFragment
+import ru.popov.bodya.domain.transactions.models.TransactionsCategory
 import java.util.*
 
 /*
     Мне очень стыдно за этот фрагмент
-    Для того, чтобы не создавать multable поля в объекте Transaction,
+    Для того, чтобы не создавать multable поля в объекте TransactionEntity,
     этот объект собирается по кусочкам, которые мы получаем из полей
     Посмотрите на UI этого фрагмента в приложении
  */
@@ -35,7 +36,7 @@ class AddTransactionFragment : AppFragment(), AddTransactionView {
 
     private lateinit var selectedWallet: WalletType
     private lateinit var selectedCurrency: Currency
-    private lateinit var selectedCategory: TransactionType
+    private lateinit var selectedCategory: TransactionsCategory
     private lateinit var comment: String
     private val date = Date()
     private var amount: Double = 0.0
@@ -84,7 +85,7 @@ class AddTransactionFragment : AppFragment(), AddTransactionView {
 
     private fun initCategoriesList() {
         categoriesAdapter = CategoriesRVAdapter(object : OnItemSelectedCallback {
-            override fun onCategorySelected(type: TransactionType) {
+            override fun onCategorySelected(type: TransactionsCategory) {
                 selectedCategory = type
             }
         })
@@ -110,9 +111,6 @@ class AddTransactionFragment : AppFragment(), AddTransactionView {
             if (!isIncome)
                 amount = -amount
             comment = et_comment_on_transaction.text.toString()
-            val transaction = Transaction(date = date, wallet = selectedWallet,
-                    description = comment, type = selectedCategory,
-                    amount = amount, currency = selectedCurrency)
         }
     }
 
@@ -149,6 +147,6 @@ class AddTransactionFragment : AppFragment(), AddTransactionView {
     }
 
     interface OnItemSelectedCallback {
-        fun onCategorySelected(type: TransactionType)
+        fun onCategorySelected(type: TransactionsCategory)
     }
 }

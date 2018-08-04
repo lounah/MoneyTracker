@@ -1,38 +1,66 @@
 package com.lounah.moneytracker.util
 
-import android.view.View
-import com.lounah.moneytracker.data.entities.TransactionType
+import ru.popov.bodya.domain.transactions.models.ExpenseCategory
 import com.lounah.wallettracker.R
+import ru.popov.bodya.domain.transactions.models.IncomeCategory
+import ru.popov.bodya.domain.transactions.models.TransactionsCategory
 
 class ResourcesSelector private constructor() {
 
     companion object {
-        fun fromTransactionTypeToString(type: TransactionType, view: View) = when (type) {
-            TransactionType.AUTO -> view.resources.getString(R.string.auto)
-            TransactionType.TREATMENT -> view.resources.getString(R.string.treatment)
-            TransactionType.REST -> view.resources.getString(R.string.rest)
-            TransactionType.FAMILY -> view.resources.getString(R.string.family)
-            TransactionType.CLOTHES -> view.resources.getString(R.string.clothes)
-            TransactionType.EDUCATION -> view.resources.getString(R.string.education)
-            TransactionType.COMMUNAL_PAYMENTS -> view.resources.getString(R.string.communal_payments)
-            TransactionType.HOME -> view.resources.getString(R.string.home)
-            TransactionType.FOOD -> view.resources.getString(R.string.food)
-            TransactionType.OTHER -> view.resources.getString(R.string.other)
-            TransactionType.SALARY -> view.resources.getString(R.string.salary)
-        }!!
 
-        fun fromTransactionTypeToDrawable(type: TransactionType) = when (type) {
-            TransactionType.AUTO -> R.drawable.ic_auto
-            TransactionType.TREATMENT -> R.drawable.ic_treatment
-            TransactionType.REST -> R.drawable.ic_rest
-            TransactionType.FAMILY -> R.drawable.ic_family
-            TransactionType.CLOTHES -> R.drawable.ic_clothes
-            TransactionType.EDUCATION -> R.drawable.ic_education
-            TransactionType.COMMUNAL_PAYMENTS -> R.drawable.ic_communal_payments
-            TransactionType.HOME -> R.drawable.ic_home
-            TransactionType.FOOD -> R.drawable.ic_food
-            TransactionType.OTHER -> R.drawable.ic_other
-            TransactionType.SALARY -> R.drawable.ic_salary
+        fun fromTransactionCategoryToString(type: TransactionsCategory) = when (type) {
+            is TransactionsCategory.Expense -> getExpenseTransactionName(type.expenseCategory)
+            is TransactionsCategory.Income -> getIncomeTransactionName(type.incomeCategory)
+        }
+
+        fun fromTransactionCategoryToDrawable(type: TransactionsCategory) = when (type) {
+            is TransactionsCategory.Expense -> getExpenseTransactionDrawable(type.expenseCategory)
+            is TransactionsCategory.Income -> getIncomeTransactionDrawable(type.incomeCategory)
+        }
+
+        private fun getIncomeTransactionDrawable(incomeCategory: IncomeCategory): Int = when (incomeCategory) {
+            IncomeCategory.SALARY -> R.drawable.ic_salary
+            IncomeCategory.TRANSFER -> R.drawable.ic_family
+            IncomeCategory.GIFT -> R.drawable.ic_rest
+            IncomeCategory.OTHER_INCOME -> R.drawable.ic_other
+        }
+
+        private fun getExpenseTransactionDrawable(expenseCategory: ExpenseCategory) = when (expenseCategory) {
+            ExpenseCategory.AUTO -> R.drawable.ic_auto
+            ExpenseCategory.TREATMENT -> R.drawable.ic_treatment
+            ExpenseCategory.REST -> R.drawable.ic_rest
+            ExpenseCategory.FAMILY -> R.drawable.ic_family
+            ExpenseCategory.CLOTHES -> R.drawable.ic_clothes
+            ExpenseCategory.EDUCATION -> R.drawable.ic_education
+            ExpenseCategory.COMMUNAL_PAYMENTS -> R.drawable.ic_communal_payments
+            ExpenseCategory.HOME -> R.drawable.ic_home
+            ExpenseCategory.FOOD -> R.drawable.ic_food
+            ExpenseCategory.OTHER_EXPENSE -> R.drawable.ic_other
+        }
+
+        private fun getExpenseTransactionName(expenseCategory: ExpenseCategory): Int {
+            return when (expenseCategory) {
+                ExpenseCategory.AUTO -> R.string.auto
+                ExpenseCategory.TREATMENT -> R.string.treatment
+                ExpenseCategory.REST -> R.string.rest
+                ExpenseCategory.FAMILY -> R.string.family
+                ExpenseCategory.CLOTHES -> R.string.clothes
+                ExpenseCategory.EDUCATION -> R.string.education
+                ExpenseCategory.COMMUNAL_PAYMENTS -> R.string.communal_payments
+                ExpenseCategory.HOME -> R.string.home
+                ExpenseCategory.FOOD -> R.string.food
+                ExpenseCategory.OTHER_EXPENSE -> R.string.other
+            }
+        }
+
+        private fun getIncomeTransactionName(incomeCategory: IncomeCategory): Int {
+            return when (incomeCategory) {
+                IncomeCategory.GIFT -> R.string.gift
+                IncomeCategory.OTHER_INCOME -> R.string.other
+                IncomeCategory.SALARY -> R.string.salary
+                IncomeCategory.TRANSFER -> R.string.transfer
+            }
         }
     }
 }

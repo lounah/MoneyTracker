@@ -20,6 +20,8 @@
     <string name="treatment">Лечение</string>
     <string name="salary">Зарплата</string>
     <string name="other">Другое</string>
+    <string name="gift">Подарок</string>
+    <string name="transfer">Перевод</string>
 
     <string name="current_currency">Текущий курс валют</string>
     <string name="transaction_amount">Сумма транзакции</string>

@@ -3,10 +3,11 @@ package ru.popov.bodya.presentation.transactions
 import android.support.v7.widget.RecyclerView
 import android.text.format.DateFormat
 import android.view.View
-import com.lounah.moneytracker.data.entities.Transaction
 import com.lounah.moneytracker.util.ResourcesSelector
 import com.lounah.wallettracker.R
 import kotlinx.android.synthetic.main.item_transaction.view.*
+import ru.popov.bodya.domain.transactions.models.Transaction
+import ru.popov.bodya.domain.transactions.models.TransactionsCategory
 
 /**
  *
@@ -18,10 +19,10 @@ class TransactionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         tv_description.text = item.description
         tv_time.text = DateFormat.format("hh:mm", item.date)
         tv_currency.text = item.currency.toString()
-        tv_transaction_category.text = ResourcesSelector.fromTransactionTypeToString(item.type, itemView)
-        iv_currency_type.setImageResource(ResourcesSelector.fromTransactionTypeToDrawable(item.type))
+        tv_transaction_category.text = itemView.resources.getString(ResourcesSelector.fromTransactionCategoryToString(item.category))
+        iv_currency_type.setImageResource(ResourcesSelector.fromTransactionCategoryToDrawable(item.category))
 
-        if (item.amount < 0) {
+        if (item.category is TransactionsCategory.Expense) {
             tv_amount.setBaseColor(itemView.resources.getColor(R.color.colorExpense))
             tv_amount.setDecimalsColor(itemView.resources.getColor(R.color.colorExpense))
         } else {

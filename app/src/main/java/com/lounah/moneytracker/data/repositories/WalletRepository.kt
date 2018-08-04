@@ -4,7 +4,9 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.lounah.moneytracker.data.datasource.local.WalletDao
 import com.lounah.moneytracker.data.entities.*
-import com.lounah.moneytracker.data.entities.Currency
+import ru.popov.bodya.domain.currency.model.Currency
+import ru.popov.bodya.data.database.transactions.entities.TransactionEntity
+import ru.popov.bodya.domain.transactions.models.WalletType
 import java.util.*
 import javax.inject.Inject
 
@@ -30,7 +32,7 @@ class WalletRepository @Inject constructor(private val dao: WalletDao) {
         dao.delete(wallet)
     }
 
-    fun updateWalletByTransaction(transaction: Transaction) {
+    fun updateWalletByTransaction(transactionEntity: TransactionEntity) {
 
     }
 

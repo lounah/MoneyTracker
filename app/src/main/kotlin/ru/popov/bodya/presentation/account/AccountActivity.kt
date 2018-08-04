@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.widget.Toast
 import com.lounah.moneytracker.ui.settings.AboutFragment
 import com.lounah.moneytracker.ui.settings.SettingsFragment
-import com.lounah.moneytracker.ui.wallet.WalletFragment
 import com.lounah.wallettracker.R
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -69,7 +68,7 @@ class AccountActivity : AppActivity(), HasSupportFragmentInjector {
 
         override fun createFragment(screenKey: String, data: Any?): Fragment? {
             return when (screenKey) {
-                WALLET_SCREEN -> WalletFragment()
+                WALLET_SCREEN -> AccountFragment()
                 ADD_NEW_TRANSACTION_SCREEN -> AddTransactionFragment.newInstance(data as Boolean)
                 SETTINGS_SCREEN -> SettingsFragment()
                 ABOUT_SCREEN -> AboutFragment()

@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.lounah.moneytracker.data.entities.TransactionType
+import ru.popov.bodya.domain.transactions.models.ExpenseCategory
 import com.lounah.moneytracker.util.ResourcesSelector
 import com.lounah.wallettracker.R
+import ru.popov.bodya.domain.transactions.models.TransactionsCategory
 import ru.popov.bodya.presentation.addtransaction.AddTransactionFragment
 
 /*
@@ -22,10 +23,7 @@ import ru.popov.bodya.presentation.addtransaction.AddTransactionFragment
 class CategoriesRVAdapter(private val callback: AddTransactionFragment.OnItemSelectedCallback)
     : RecyclerView.Adapter<CategoriesRVAdapter.ViewHolder>() {
 
-    private val categories = mutableListOf(TransactionType.HOME, TransactionType.AUTO,
-            TransactionType.EDUCATION, TransactionType.TREATMENT, TransactionType.REST,
-            TransactionType.CLOTHES, TransactionType.COMMUNAL_PAYMENTS, TransactionType.FOOD,
-            TransactionType.SALARY, TransactionType.FAMILY, TransactionType.OTHER)
+    private val categories = mutableListOf(TransactionsCategory.Expense(ExpenseCategory.OTHER_EXPENSE), TransactionsCategory.Expense(ExpenseCategory.FAMILY))
 
     private var selectedIndex = 0
 
@@ -52,10 +50,10 @@ class CategoriesRVAdapter(private val callback: AddTransactionFragment.OnItemSel
             itemView.findViewById<ImageView>(R.id.iv_category)
         }
 
-        fun bind(item: TransactionType, position: Int) = with(itemView) {
+        fun bind(item: TransactionsCategory, position: Int) = with(itemView) {
 
-            val iconImageResource = ResourcesSelector.fromTransactionTypeToDrawable(item)
-            categoryName.text = ResourcesSelector.fromTransactionTypeToString(item, itemView)
+            val iconImageResource = ResourcesSelector.fromTransactionCategoryToDrawable(item)
+            categoryName.text = itemView.resources.getString( ResourcesSelector.fromTransactionCategoryToString(item))
             categoryIcon.setImageResource(iconImageResource)
 
             if (position == selectedIndex)

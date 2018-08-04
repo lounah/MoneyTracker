@@ -27,9 +27,9 @@
     <string name="other">Other</string>
     <string name="transaction_currency">Transaction currency</string>
     <string name="transaction_amount">Transaction amount</string>
-    <string name="create_transaction">Create transaction</string>
+    <string name="create_transaction">Create transactionEntity</string>
     <string name="transaction_wallet">Transaction wallet</string>
-    <string name="transaction_commentary">Comment on transaction</string>
+    <string name="transaction_commentary">Comment on transactionEntity</string>
     <string name="create">Create</string>
     <string name="please_type_here_short_comment">Short comment</string>
     <string name="transaction_category">Transaction category</string>
@@ -39,7 +39,7 @@
     <string name="new_expense">New expense</string>
     <string name="error_loading_data">Error while loading data</string>
     <string name="wallet">Wallet</string>
-    <string name="all_transactions">All transactions</string>
+    <string name="all_transactions">All transactionEntities</string>
     <string name="incomes">Incomes</string>
     <string name="expenses">Expenses</string>
     <string name="statistics">Stats</string>

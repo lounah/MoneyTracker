@@ -2,7 +2,7 @@ package ru.popov.bodya.di.common.modules
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.lounah.moneytracker.ui.wallet.WalletViewModel
+import ru.popov.bodya.presentation.account.AccountViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -17,6 +17,6 @@ interface ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(WalletViewModel::class)
-    fun bindBalanceViewModel(balanceViewModel: WalletViewModel): ViewModel
+    @ViewModelKey(AccountViewModel::class)
+    fun bindBalanceViewModel(balanceViewModel: AccountViewModel): ViewModel
 }

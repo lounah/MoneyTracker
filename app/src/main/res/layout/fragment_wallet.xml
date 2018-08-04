@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout android:id="@+id/fragment_wallet_cl"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_wallet_cl"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -67,17 +68,31 @@
 
                 </info.hoang8f.android.segmented.SegmentedGroup>
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/vp_amount"
+                <org.fabiomsr.moneytextview.MoneyTextView
+                    android:id="@+id/tv_balance"
+                    style="@style/TextStyle.Large"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:layout_below="@id/rg_currencies" />
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rg_currencies"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="2dp"
+                    app:baseTextSize="69sp"
+                    app:decimalDigitsTextSize="21sp"
+                    app:decimalGravity="top"
+                    app:decimalMargin="8dp"
+                    app:decimalSeparator="."
+                    app:includeDecimalSeparator="true"
+                    app:symbolGravity="start"
+                    app:symbolMargin="8dp"
+                    app:symbolTextSize="13sp"
+                    tools:amount="11143.55" />
 
                 <LinearLayout
                     android:id="@+id/ll_cards"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/vp_amount"
+                    android:layout_below="@id/tv_balance"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
@@ -234,11 +249,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:gravity="center"
             android:padding="16dp"
-            android:background="@color/white"
-            android:textAppearance="@style/TextStyle.Large"
-            android:text="@string/all_transactions" />
+            android:text="@string/all_transactions"
+            android:textAppearance="@style/TextStyle.Large" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_actions"

@@ -1,10 +1,10 @@
 package ru.popov.bodya.data.repositories
 
 import io.reactivex.Single
-import ru.popov.bodya.data.database.converters.beans.ExchangeRatesEntityBeanConverter
-import ru.popov.bodya.data.database.converters.model.ExchangeRatesBeanConverter
-import ru.popov.bodya.data.database.converters.model.ExchangeRatesEntityConverter
-import ru.popov.bodya.data.database.dao.CurrenciesDao
+import ru.popov.bodya.data.database.currencies.converters.beans.ExchangeRatesEntityBeanConverter
+import ru.popov.bodya.data.database.currencies.converters.models.ExchangeRatesBeanConverter
+import ru.popov.bodya.data.database.currencies.converters.models.ExchangeRatesEntityConverter
+import ru.popov.bodya.data.database.currencies.dao.CurrenciesDao
 import ru.popov.bodya.data.network.api.ExchangeRateApiWrapper
 import ru.popov.bodya.data.network.beans.ExchangeRatesBean
 import ru.popov.bodya.domain.currency.model.ExchangeRates

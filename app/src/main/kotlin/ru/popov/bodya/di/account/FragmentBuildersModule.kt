@@ -3,7 +3,7 @@ package ru.popov.bodya.di.account
 import com.lounah.moneytracker.ui.charts.ChartFragment
 import com.lounah.moneytracker.ui.settings.AboutFragment
 import com.lounah.moneytracker.ui.settings.SettingsFragment
-import com.lounah.moneytracker.ui.wallet.WalletFragment
+import ru.popov.bodya.presentation.account.AccountFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import ru.popov.bodya.presentation.addtransaction.AddTransactionFragment
@@ -11,7 +11,7 @@ import ru.popov.bodya.presentation.addtransaction.AddTransactionFragment
 @Module
 abstract class FragmentBuildersModule {
     @ContributesAndroidInjector
-    abstract fun contributeWalletFragment(): WalletFragment
+    abstract fun contributeWalletFragment(): AccountFragment
 
     @ContributesAndroidInjector
     abstract fun contributeSettingsFragment(): SettingsFragment

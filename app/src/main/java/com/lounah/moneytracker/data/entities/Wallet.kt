@@ -2,6 +2,8 @@ package com.lounah.moneytracker.data.entities
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import ru.popov.bodya.domain.currency.model.Currency
+import ru.popov.bodya.domain.transactions.models.WalletType
 import java.util.Date
 
 @Entity(tableName = "wallets")

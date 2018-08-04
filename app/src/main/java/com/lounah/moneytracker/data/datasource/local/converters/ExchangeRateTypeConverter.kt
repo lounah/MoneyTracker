@@ -3,9 +3,8 @@ package com.lounah.moneytracker.data.datasource.local.converters
 import android.arch.persistence.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.lounah.moneytracker.data.entities.Currency
+import ru.popov.bodya.domain.currency.model.Currency
 import java.util.*
-import java.util.Collections.emptyList
 
 
 class ExchangeRateTypeConverter {

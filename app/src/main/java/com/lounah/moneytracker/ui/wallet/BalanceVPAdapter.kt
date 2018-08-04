@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lounah.moneytracker.data.entities.Wallet
-import com.lounah.moneytracker.data.entities.WalletType
+import ru.popov.bodya.domain.transactions.models.WalletType
 import com.lounah.wallettracker.R
 import kotlinx.android.synthetic.main.item_balance.view.*
 
