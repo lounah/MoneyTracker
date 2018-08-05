@@ -2,7 +2,7 @@ package ru.popov.bodya.data.database.transactions.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Query
-import com.lounah.moneytracker.data.datasource.local.BaseDao
+import ru.popov.bodya.data.database.BaseDao
 import ru.popov.bodya.domain.transactions.models.WalletType
 import ru.popov.bodya.data.database.transactions.entities.TransactionEntity
 

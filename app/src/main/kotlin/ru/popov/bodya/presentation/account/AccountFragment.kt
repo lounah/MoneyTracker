@@ -11,10 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.lounah.moneytracker.data.entities.Status
-import ru.popov.bodya.data.database.transactions.entities.TransactionEntity
-import com.lounah.moneytracker.data.entities.Wallet
-import com.lounah.moneytracker.ui.wallet.BalanceVPAdapter
-import com.lounah.moneytracker.util.ZoomOutPageTransformer
 import com.lounah.wallettracker.R
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_wallet.*
@@ -29,11 +25,11 @@ import javax.inject.Inject
 class AccountFragment : AppFragment() {
 
     @Inject
-    lateinit var viewModel: AccountViewModel
-    @Inject
     lateinit var router: Router
     @Inject
     lateinit var factory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModel: AccountViewModel
 
     private val formatter = DecimalFormat("#0.00")
     private lateinit var transactionsAdapter: TransactionsRVAdapter
@@ -52,11 +48,6 @@ class AccountFragment : AppFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, factory).get(AccountViewModel::class.java)
     }
 
     override fun onStart() {

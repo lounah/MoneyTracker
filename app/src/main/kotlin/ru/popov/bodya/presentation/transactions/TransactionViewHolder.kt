@@ -19,7 +19,7 @@ class TransactionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         tv_description.text = item.description
         tv_time.text = DateFormat.format("hh:mm", item.date)
         tv_currency.text = item.currency.toString()
-        tv_transaction_category.text = itemView.resources.getString(ResourcesSelector.fromTransactionCategoryToString(item.category))
+        transaction_category_text_view.text = itemView.resources.getString(ResourcesSelector.fromTransactionCategoryToString(item.category))
         iv_currency_type.setImageResource(ResourcesSelector.fromTransactionCategoryToDrawable(item.category))
 
         if (item.category is TransactionsCategory.Expense) {

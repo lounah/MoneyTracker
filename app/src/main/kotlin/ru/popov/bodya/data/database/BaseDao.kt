@@ -1,4 +1,4 @@
-package com.lounah.moneytracker.data.datasource.local
+package ru.popov.bodya.data.database
 
 import android.arch.persistence.room.*
 

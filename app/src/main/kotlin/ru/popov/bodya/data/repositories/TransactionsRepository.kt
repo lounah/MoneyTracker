@@ -1,9 +1,9 @@
 package ru.popov.bodya.data.repositories
 
+import io.reactivex.Completable
 import io.reactivex.Single
 import ru.popov.bodya.data.database.transactions.converters.models.TransactionEntityConverter
 import ru.popov.bodya.data.database.transactions.dao.TransactionsDao
-import ru.popov.bodya.data.database.transactions.entities.TransactionEntity
 import ru.popov.bodya.domain.currency.model.Currency
 import ru.popov.bodya.domain.transactions.models.*
 import java.util.*
@@ -15,11 +15,11 @@ class TransactionsRepository(private val transactionsDao: TransactionsDao,
                              private val transactionsEntityConverter: TransactionEntityConverter) {
 
     fun getAllTransactionsByWallet(walletType: WalletType): Single<List<Transaction>> =
-//            Single.fromCallable {
-//                transactionsDao.getAllTransactionsByWallet(walletType)
-//                        .map { transactionsEntityConverter.convert(it) }
-//            }
-            Single.fromCallable { createStubTransactionList() }
+            Single.fromCallable {
+                transactionsDao.getAllTransactionsByWallet(walletType)
+                        .map { transactionsEntityConverter.convert(it) }
+            }
+//            Single.fromCallable { createStubTransactionList() }
 
     fun getIncomeTransactionsByWallet(walletType: WalletType): Single<List<Transaction>> =
             Single.fromCallable {
@@ -32,6 +32,14 @@ class TransactionsRepository(private val transactionsDao: TransactionsDao,
                 transactionsDao.getExpenseTransactionsByWallet(walletType)
                         .map { transactionsEntityConverter.convert(it) }
             }
+
+    fun addIncomeTransaction(transaction: Transaction): Completable {
+        return Completable.fromAction { transactionsDao.insert(transactionsEntityConverter.reverse(transaction)) }
+    }
+
+    fun addExpenseTransaction(transaction: Transaction): Completable {
+        return Completable.fromAction { transactionsDao.insert(transactionsEntityConverter.reverse(transaction)) }
+    }
 
     private fun createStubTransactionList(): List<Transaction> {
         return listOf(

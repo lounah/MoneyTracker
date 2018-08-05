@@ -36,15 +36,12 @@ class AccountViewModel @Inject constructor(
 
         currencyInteractor.getExchangeRate()
                 .doOnSubscribe { usdExchangeRateLiveData.postValue(Resource.loading(0.0)) }
-                .observeOn(rxSchedulers.mainThreadScheduler())
                 .doOnSuccess { exchangeRates: ExchangeRates ->
                     usdExchangeRateLiveData.postValue(Resource.success(currencyInteractor.getUsdRate(exchangeRates)))
                     eurExchangeRateLiveData.postValue(Resource.success(currencyInteractor.getEurRate(exchangeRates)))
                 }
                 .doOnError { usdExchangeRateLiveData.postValue(Resource.error("", 0.0)) }
-                .observeOn(rxSchedulers.ioScheduler())
                 .flatMap { transactionsInteractor.getAllTransactionsByWallet(WalletType.BANK_ACCOUNT) }
-                .observeOn(rxSchedulers.mainThreadScheduler())
                 .doOnSuccess { transactionsLiveData.postValue(Resource.success(it)) }
                 .observeOn(rxSchedulers.computationScheduler())
                 .map { getTransactionsPair(it) }
@@ -89,5 +86,4 @@ class AccountViewModel @Inject constructor(
             Currency.USD -> transaction.amount * (1 / exchangeRates.rates.usd)
         }
     }
-
 }
