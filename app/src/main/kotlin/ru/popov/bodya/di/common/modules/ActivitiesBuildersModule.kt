@@ -4,7 +4,9 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import ru.popov.bodya.di.account.AccountModule
 import ru.popov.bodya.di.account.FragmentBuildersModule
+import ru.popov.bodya.di.init.InitModule
 import ru.popov.bodya.presentation.account.AccountActivity
+import ru.popov.bodya.presentation.init.InitActivity
 
 /**
  * @author popovbodya
@@ -16,4 +18,7 @@ interface ActivitiesBuildersModule {
         AccountModule::class
     ])
     fun provideAccountActivity(): AccountActivity
+
+    @ContributesAndroidInjector(modules = [InitModule::class])
+    fun provideInitActivity(): InitActivity
 }

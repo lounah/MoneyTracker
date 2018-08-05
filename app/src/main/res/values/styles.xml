@@ -10,6 +10,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.NoActionBar.Launcher">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
 
     <!-- ToolBar -->
     <style name="ToolBarStyle" parent="Theme.AppCompat">

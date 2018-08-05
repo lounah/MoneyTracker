@@ -15,6 +15,6 @@ class ExchangeRatesEntityBeanConverter constructor(private val ratesEntityBeanCo
     }
 
     override fun convert(from: ExchangeRatesBean): ExchangeRatesEntity {
-        return ExchangeRatesEntity(0, from.timestamp, from.base, from.date, ratesEntityBeanConverter.convert(from.rates))
+        return ExchangeRatesEntity(1, from.timestamp, from.base, from.date, ratesEntityBeanConverter.convert(from.rates))
     }
 }

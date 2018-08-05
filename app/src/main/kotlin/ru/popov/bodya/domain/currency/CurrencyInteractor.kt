@@ -13,11 +13,8 @@ class CurrencyInteractor(private val currenciesRepository: CurrenciesRepository)
 
     fun getCachedExchangeRate(): Single<ExchangeRates> = currenciesRepository.getCachedExchangeRate()
 
-    fun getUsdRate(exchangeRates: ExchangeRates): Double =
-            1 / exchangeRates.rates.usd
+    fun getUsdRate(exchangeRates: ExchangeRates): Double = 1 / exchangeRates.rates.usd
 
-
-    fun getEurRate(exchangeRates: ExchangeRates): Double =
-            1 / exchangeRates.rates.eur
+    fun getEurRate(exchangeRates: ExchangeRates): Double = 1 / exchangeRates.rates.eur
 
 }

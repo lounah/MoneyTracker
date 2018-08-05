@@ -9,6 +9,7 @@ import dagger.multibindings.IntoMap
 import ru.popov.bodya.di.common.viewmodel.AppViewModelFactory
 import ru.popov.bodya.di.common.viewmodel.ViewModelKey
 import ru.popov.bodya.presentation.addtransaction.AddTransactionViewModel
+import ru.popov.bodya.presentation.init.InitViewModel
 
 @Module
 interface ViewModelModule {
@@ -25,4 +26,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(AddTransactionViewModel::class)
     fun bindAddTransactionViewModel(addTransactionViewModel: AddTransactionViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(InitViewModel::class)
+    fun bindInitViewModel(initViewModel: InitViewModel): ViewModel
 }

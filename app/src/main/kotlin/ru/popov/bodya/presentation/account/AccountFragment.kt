@@ -2,7 +2,6 @@ package ru.popov.bodya.presentation.account
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -194,6 +193,7 @@ class AccountFragment : AppFragment() {
     }
 
     private fun processSuccessBalanceResponse(amount: Double) {
+        tv_balance.setSymbol(getString(R.string.rub_sign))
         tv_balance.amount = amount.toFloat()
     }
 

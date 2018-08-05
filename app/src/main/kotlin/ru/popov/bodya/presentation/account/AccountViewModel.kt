@@ -31,10 +31,9 @@ class AccountViewModel @Inject constructor(
     val usdExchangeRateLiveData = MutableLiveData<Resource<Double>>()
     val eurExchangeRateLiveData = MutableLiveData<Resource<Double>>()
 
-
     fun fetchInitialData() {
 
-        currencyInteractor.getExchangeRate()
+        currencyInteractor.getCachedExchangeRate()
                 .doOnSubscribe { usdExchangeRateLiveData.postValue(Resource.loading(0.0)) }
                 .doOnSuccess { exchangeRates: ExchangeRates ->
                     usdExchangeRateLiveData.postValue(Resource.success(currencyInteractor.getUsdRate(exchangeRates)))
