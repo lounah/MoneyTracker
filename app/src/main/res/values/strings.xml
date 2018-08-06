@@ -20,6 +20,8 @@
     <string name="treatment">Лечение</string>
     <string name="salary">Зарплата</string>
     <string name="other">Другое</string>
+    <string name="gift">Подарок</string>
+    <string name="transfer">Перевод</string>
 
     <string name="current_currency">Текущий курс валют</string>
     <string name="transaction_amount">Сумма транзакции</string>
@@ -62,8 +64,10 @@
     <string name="new_income">Новый доход</string>
     <string name="new_expense">Новый расход</string>
 
+    <string name="graphics">Graphics</string>
     <string name="error_loading_data">Произошла ошибка при загрузке данных</string>
     <string name="dollar_sign">$</string>
+    <string name="rub_sign">₽</string>
     <string name="euro_sign">€</string>
     <string name="dash">-</string>
     <string name="rub">RUB</string>

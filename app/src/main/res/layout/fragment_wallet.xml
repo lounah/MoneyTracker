@@ -10,17 +10,12 @@
         android:id="@+id/information_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/information_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="@color/colorPrimary"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,17 +23,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:title="@string/wallet" />
+
+                <info.hoang8f.android.segmented.SegmentedGroup
                     android:id="@+id/rg_currencies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/toolbar"
                     android:layout_margin="16dp"
                     android:orientation="horizontal"
                     android:weightSum="3"
-                    segmentedgroup:sc_border_width="2dp"
-                    segmentedgroup:sc_checked_text_color="@color/black"
-                    segmentedgroup:sc_corner_radius="2dp"
-                    segmentedgroup:sc_tint_color="@color/white">
+                    app:sc_border_width="2dp"
+                    app:sc_checked_text_color="@color/white"
+                    app:sc_corner_radius="4dp"
+                    app:sc_tint_color="@color/black">
 
                     <RadioButton
                         android:id="@+id/btn_rub"
@@ -66,19 +68,31 @@
 
                 </info.hoang8f.android.segmented.SegmentedGroup>
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/vp_amount"
+                <org.fabiomsr.moneytextview.MoneyTextView
+                    android:id="@+id/tv_balance"
+                    style="@style/TextStyle.Large"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/rg_currencies"
-                    android:background="@color/colorPrimary" />
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="2dp"
+                    app:baseTextSize="69sp"
+                    app:decimalDigitsTextSize="21sp"
+                    app:decimalGravity="top"
+                    app:decimalMargin="8dp"
+                    app:decimalSeparator="."
+                    app:includeDecimalSeparator="true"
+                    app:symbolGravity="start"
+                    app:symbolMargin="8dp"
+                    app:symbolTextSize="13sp"
+                    tools:amount="11143.55" />
 
                 <LinearLayout
                     android:id="@+id/ll_cards"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/vp_amount"
-                    android:background="@color/white"
+                    android:layout_below="@id/tv_balance"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
@@ -130,21 +144,13 @@
                             android:layout_margin="16dp"
                             android:text="@string/dash" />
 
-                        <FrameLayout
-                            android:id="@+id/pb_placeholder"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/white">
-
-                            <ProgressBar
-                                android:id="@+id/progressBar"
-                                style="?android:attr/progressBarStyle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center" />
-
-                        </FrameLayout>
-
+                        <ProgressBar
+                            android:id="@+id/progressBar"
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:visibility="gone" />
                     </android.support.v7.widget.CardView>
 
                     <LinearLayout
@@ -227,69 +233,35 @@
                                 app:symbol="" />
 
                         </android.support.v7.widget.CardView>
-
                     </LinearLayout>
-
                 </LinearLayout>
-
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tl_dots"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_below="@id/ll_cards"
-                    android:background="@color/colorPrimary"
-                    app:tabGravity="center"
-                    app:tabIndicatorHeight="0dp" />
 
             </RelativeLayout>
         </android.support.design.widget.CollapsingToolbarLayout>
-
     </android.support.design.widget.AppBarLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tl_transaction_types"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:background="@color/white"
-            android:elevation="2dp"
-            app:tabGravity="center"
-            app:tabIndicatorColor="@color/colorPrimaryDark"
-            app:tabIndicatorHeight="2dp">
-
-            <android.support.design.widget.TabItem
-                android:id="@+id/ti_all_transactions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/all_transactions" />
-
-            <android.support.design.widget.TabItem
-                android:id="@+id/ti_incomes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/incomes" />
-
-            <android.support.design.widget.TabItem
-                android:id="@+id/ti_expenses"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/expenses" />
-
-        </android.support.design.widget.TabLayout>
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="@string/all_transactions"
+            android:textAppearance="@style/TextStyle.Large" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_actions"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/tl_transaction_types"
-            android:background="@color/settingsBackgroundColor"
-            android:clipToPadding="false" />
-    </RelativeLayout>
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/fab_add"
