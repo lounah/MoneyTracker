@@ -20,7 +20,7 @@ import javax.inject.Singleton
     ActivitiesBuildersModule::class,
     RxModule::class,
     NavigationModule::class
-   ])
+])
 interface AppComponent {
     @Component.Builder
     interface Builder {

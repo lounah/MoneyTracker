@@ -7,7 +7,7 @@ import ru.popov.bodya.domain.transactions.models.Transaction
 /**
  *  @author popovbodya
  */
-class TransactionEntityConverter: Converter<TransactionEntity, Transaction> {
+class TransactionEntityConverter : Converter<TransactionEntity, Transaction> {
     override fun reverse(to: Transaction): TransactionEntity {
         return TransactionEntity(0, to.wallet, to.currency, to.category, to.amount, to.date, to.description)
     }

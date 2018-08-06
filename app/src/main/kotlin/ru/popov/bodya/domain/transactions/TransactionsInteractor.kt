@@ -27,7 +27,7 @@ class TransactionsInteractor(private val transactionsRepository: TransactionsRep
         return transactionsRepository.addIncomeTransaction(Transaction(selectedWallet, selectedCurrency, selectedCategory, amount, date, comment))
     }
 
-    fun addExpenseTransaction(selectedWallet: WalletType, selectedCategory: TransactionsCategory.Expense, selectedCurrency: Currency, amount: Double,  date: Date, comment: String): Completable {
+    fun addExpenseTransaction(selectedWallet: WalletType, selectedCategory: TransactionsCategory.Expense, selectedCurrency: Currency, amount: Double, date: Date, comment: String): Completable {
         return transactionsRepository.addExpenseTransaction(Transaction(selectedWallet, selectedCurrency, selectedCategory, amount, date, comment))
     }
 }

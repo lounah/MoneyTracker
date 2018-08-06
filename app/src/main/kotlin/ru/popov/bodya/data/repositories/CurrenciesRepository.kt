@@ -6,7 +6,6 @@ import ru.popov.bodya.data.database.currencies.converters.models.ExchangeRatesBe
 import ru.popov.bodya.data.database.currencies.converters.models.ExchangeRatesEntityConverter
 import ru.popov.bodya.data.database.currencies.dao.CurrenciesDao
 import ru.popov.bodya.data.database.currencies.entities.ExchangeRatesEntity
-import ru.popov.bodya.data.database.currencies.entities.RatesEntity
 import ru.popov.bodya.data.network.api.ExchangeRateApiWrapper
 import ru.popov.bodya.data.network.beans.ExchangeRatesBean
 import ru.popov.bodya.data.network.beans.RatesBean

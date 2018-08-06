@@ -3,8 +3,8 @@ package ru.popov.bodya.data.database.transactions.dao
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Query
 import ru.popov.bodya.data.database.BaseDao
-import ru.popov.bodya.domain.transactions.models.WalletType
 import ru.popov.bodya.data.database.transactions.entities.TransactionEntity
+import ru.popov.bodya.domain.transactions.models.WalletType
 
 /**
  *  @author popovbodya

@@ -3,9 +3,9 @@ package ru.popov.bodya.di.account
 import com.lounah.moneytracker.ui.charts.ChartFragment
 import com.lounah.moneytracker.ui.settings.AboutFragment
 import com.lounah.moneytracker.ui.settings.SettingsFragment
-import ru.popov.bodya.presentation.account.AccountFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import ru.popov.bodya.presentation.account.AccountFragment
 import ru.popov.bodya.presentation.addtransaction.AddTransactionFragment
 
 @Module

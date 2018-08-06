@@ -2,9 +2,7 @@ package ru.popov.bodya.presentation.account
 
 import android.arch.lifecycle.MutableLiveData
 import com.lounah.moneytracker.data.entities.Resource
-import io.reactivex.Single
 import io.reactivex.functions.BiFunction
-import io.reactivex.functions.Consumer
 import ru.popov.bodya.core.extensions.connect
 import ru.popov.bodya.core.mvwhatever.AppViewModel
 import ru.popov.bodya.core.rx.RxSchedulers

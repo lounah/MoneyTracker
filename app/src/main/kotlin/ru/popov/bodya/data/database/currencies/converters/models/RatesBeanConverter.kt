@@ -7,6 +7,6 @@ import ru.popov.bodya.domain.currency.model.Rates
 /**
  * @author popovbodya
  */
-class RatesBeanConverter: OneWayConverter<RatesBean, Rates> {
+class RatesBeanConverter : OneWayConverter<RatesBean, Rates> {
     override fun convert(from: RatesBean): Rates = Rates(from.usd, from.eur)
 }

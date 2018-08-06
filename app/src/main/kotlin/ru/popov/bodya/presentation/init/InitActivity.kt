@@ -11,7 +11,6 @@ import ru.popov.bodya.core.mvwhatever.AppActivity
 import ru.popov.bodya.presentation.account.AccountActivity
 import ru.popov.bodya.presentation.common.Screens.ACCOUNT_ACTIVITY
 import ru.terrakok.cicerone.NavigatorHolder
-import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 

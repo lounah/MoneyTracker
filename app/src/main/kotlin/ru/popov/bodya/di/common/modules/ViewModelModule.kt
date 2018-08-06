@@ -2,12 +2,12 @@ package ru.popov.bodya.di.common.modules
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import ru.popov.bodya.presentation.account.AccountViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import ru.popov.bodya.di.common.viewmodel.AppViewModelFactory
 import ru.popov.bodya.di.common.viewmodel.ViewModelKey
+import ru.popov.bodya.presentation.account.AccountViewModel
 import ru.popov.bodya.presentation.addtransaction.AddTransactionViewModel
 import ru.popov.bodya.presentation.init.InitViewModel
 

@@ -13,8 +13,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.lounah.moneytracker.data.entities.Status
-import ru.popov.bodya.domain.currency.model.Currency
-import ru.popov.bodya.domain.transactions.models.WalletType
 import com.lounah.moneytracker.ui.wallet.addtransaction.AddTransactionView
 import com.lounah.moneytracker.ui.wallet.addtransaction.CategoriesRVAdapter
 import com.lounah.wallettracker.R
@@ -24,7 +22,9 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.fragment_add_transaction.*
 import ru.popov.bodya.core.mvwhatever.AppFragment
+import ru.popov.bodya.domain.currency.model.Currency
 import ru.popov.bodya.domain.transactions.models.TransactionsCategory
+import ru.popov.bodya.domain.transactions.models.WalletType
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
 import javax.inject.Inject

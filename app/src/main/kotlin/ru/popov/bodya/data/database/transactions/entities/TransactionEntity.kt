@@ -3,8 +3,8 @@ package ru.popov.bodya.data.database.transactions.entities
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import ru.popov.bodya.domain.currency.model.Currency
-import ru.popov.bodya.domain.transactions.models.WalletType
 import ru.popov.bodya.domain.transactions.models.TransactionsCategory
+import ru.popov.bodya.domain.transactions.models.WalletType
 import java.util.*
 
 @Entity(tableName = "transactions")

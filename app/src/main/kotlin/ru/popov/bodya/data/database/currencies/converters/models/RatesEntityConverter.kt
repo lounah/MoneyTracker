@@ -7,7 +7,7 @@ import ru.popov.bodya.domain.currency.model.Rates
 /**
  * @author popovbodya
  */
-class RatesEntityConverter: OneWayConverter<RatesEntity, Rates> {
+class RatesEntityConverter : OneWayConverter<RatesEntity, Rates> {
     override fun convert(from: RatesEntity): Rates {
         return Rates(from.usd, from.eur)
     }
