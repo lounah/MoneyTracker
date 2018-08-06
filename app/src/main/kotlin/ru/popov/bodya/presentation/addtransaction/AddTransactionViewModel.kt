@@ -9,9 +9,11 @@ import ru.popov.bodya.domain.transactions.TransactionsInteractor
 import ru.popov.bodya.domain.transactions.models.ExpenseCategory
 import ru.popov.bodya.domain.transactions.models.IncomeCategory
 import ru.popov.bodya.domain.transactions.models.TransactionsCategory
-import ru.popov.bodya.domain.transactions.models.TransactionsCategory.*
+import ru.popov.bodya.domain.transactions.models.TransactionsCategory.Expense
+import ru.popov.bodya.domain.transactions.models.TransactionsCategory.Income
 import ru.popov.bodya.domain.transactions.models.WalletType
 import ru.terrakok.cicerone.Router
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -35,7 +37,7 @@ class AddTransactionViewModel @Inject constructor(private val transactionsIntera
         transactionAddStatus.postValue(Resource.loading(false))
         when (selectedCategory) {
             is Income -> {
-                transactionsInteractor.addIncomeTransaction(selectedWallet, selectedCategory, selectedCurrency, amount, comment)
+                transactionsInteractor.addIncomeTransaction(selectedWallet, selectedCategory, selectedCurrency, amount, Calendar.getInstance().time, comment)
                         .compose(rxSchedulersTransformer.ioToMainTransformerCompletable())
                         .subscribe(
                                 { transactionAddStatus.postValue(Resource.success(true)) },
@@ -43,7 +45,7 @@ class AddTransactionViewModel @Inject constructor(private val transactionsIntera
                         )
             }
             is Expense -> {
-                transactionsInteractor.addExpenseTransaction(selectedWallet, selectedCategory, selectedCurrency, amount, comment)
+                transactionsInteractor.addExpenseTransaction(selectedWallet, selectedCategory, selectedCurrency, amount, Calendar.getInstance().time, comment)
                         .compose(rxSchedulersTransformer.ioToMainTransformerCompletable())
                         .subscribe(
                                 { transactionAddStatus.postValue(Resource.success(true)) },

@@ -105,4 +105,5 @@ dependencies {
     testImplementation libraries.hamcrest
     testImplementation libraries.mockito
     testImplementation libraries.roomTest
+    testImplementation libraries.espresso
 }
